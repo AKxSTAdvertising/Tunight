@@ -1,0 +1,1126 @@
+```css
+/* =========================================================
+   TUNIGHT — UNIVERSAL EXPERIENCE CSS
+   Applies to:
+   index.html
+   our story.html
+   menu.html
+   events.html
+
+   Upload this file as:
+   universal.css
+
+   Then add inside <head> of every page:
+   <link rel="stylesheet" href="universal.css">
+   ========================================================= */
+
+
+/* =========================================================
+   01. GLOBAL MOTION SYSTEM
+   ========================================================= */
+
+:root{
+    --tn-gold:#c7a766;
+    --tn-gold-light:#dfc98f;
+    --tn-green:#09271d;
+    --tn-green-dark:#03130e;
+    --tn-cream:#f3eee3;
+    --tn-white:#ffffff;
+
+    --tn-ease:cubic-bezier(.22,1,.36,1);
+    --tn-ease-soft:cubic-bezier(.16,1,.3,1);
+
+    --tn-shadow:
+        0 25px 70px rgba(0,0,0,.14);
+
+    --tn-shadow-hover:
+        0 35px 100px rgba(0,0,0,.22);
+}
+
+
+/* =========================================================
+   02. SMOOTH PAGE
+   ========================================================= */
+
+html{
+    scroll-behavior:smooth;
+    scroll-padding-top:80px;
+}
+
+body{
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+}
+
+
+/* =========================================================
+   03. SELECTION
+   ========================================================= */
+
+::selection{
+    background:var(--tn-gold);
+    color:var(--tn-green);
+}
+
+
+/* =========================================================
+   04. IMAGE LIFE
+   ========================================================= */
+
+img{
+    backface-visibility:hidden;
+    -webkit-backface-visibility:hidden;
+}
+
+img:not([src=""]){
+    transition:
+        transform 1s var(--tn-ease),
+        filter .8s var(--tn-ease);
+}
+
+
+/* =========================================================
+   05. ALL CLICKABLE ELEMENTS
+   ========================================================= */
+
+a,
+button{
+    -webkit-tap-highlight-color:transparent;
+}
+
+a{
+    transition:
+        color .35s var(--tn-ease),
+        opacity .35s var(--tn-ease),
+        transform .35s var(--tn-ease);
+}
+
+
+/* =========================================================
+   06. BUTTON — PREMIUM PRESS FEEL
+   ========================================================= */
+
+.button,
+.header-button,
+button{
+    position:relative;
+    overflow:hidden;
+    isolation:isolate;
+}
+
+.button::before,
+.header-button::before{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:0;
+    height:0;
+    border-radius:50%;
+
+    background:rgba(255,255,255,.20);
+
+    transform:translate(-50%,-50%);
+
+    transition:
+        width .55s var(--tn-ease),
+        height .55s var(--tn-ease);
+    
+    z-index:-1;
+}
+
+.button:hover::before,
+.header-button:hover::before{
+    width:320px;
+    height:320px;
+}
+
+.button:hover,
+.header-button:hover{
+    transform:translateY(-3px);
+}
+
+.button:active,
+.header-button:active{
+    transform:
+        translateY(1px)
+        scale(.97);
+}
+
+
+/* =========================================================
+   07. GOLD BUTTON LIGHT SWEEP
+   ========================================================= */
+
+.button-gold::after,
+.header-button::after{
+    content:"";
+
+    position:absolute;
+    top:-80%;
+    left:-120%;
+
+    width:70%;
+    height:260%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.42),
+            transparent
+        );
+
+    transform:rotate(20deg);
+
+    transition:left .75s var(--tn-ease);
+
+    pointer-events:none;
+}
+
+.button-gold:hover::after,
+.header-button:hover::after{
+    left:140%;
+}
+
+
+/* =========================================================
+   08. OUTLINE BUTTON
+   ========================================================= */
+
+.button-outline{
+    position:relative;
+
+    transition:
+        background .4s var(--tn-ease),
+        border-color .4s var(--tn-ease),
+        color .4s var(--tn-ease),
+        transform .4s var(--tn-ease);
+}
+
+.button-outline:hover{
+    background:rgba(255,255,255,.08);
+    border-color:var(--tn-gold-light);
+    color:var(--tn-gold-light);
+}
+
+
+/* =========================================================
+   09. NAVIGATION
+   ========================================================= */
+
+.nav-links a{
+    transition:
+        color .35s var(--tn-ease),
+        transform .35s var(--tn-ease);
+}
+
+.nav-links a:hover{
+    color:var(--tn-gold-light);
+    transform:translateY(-2px);
+}
+
+
+/* =========================================================
+   10. LOGO
+   ========================================================= */
+
+.logo,
+.footer-logo{
+    transition:
+        transform .5s var(--tn-ease),
+        letter-spacing .5s var(--tn-ease);
+}
+
+.logo:hover,
+.footer-logo:hover{
+    transform:translateY(-2px);
+    letter-spacing:-1px;
+}
+
+
+/* =========================================================
+   11. CART BUTTON
+   ========================================================= */
+
+.cart{
+    transition:
+        transform .4s var(--tn-ease),
+        background .4s var(--tn-ease),
+        border-color .4s var(--tn-ease);
+}
+
+.cart:hover{
+    transform:
+        translateY(-3px)
+        rotate(-5deg);
+
+    background:rgba(255,255,255,.08);
+    border-color:var(--tn-gold-light);
+}
+
+
+/* =========================================================
+   12. HERO IMAGE — CINEMATIC DEPTH
+   ========================================================= */
+
+.hero-photo img{
+    transform:scale(1.045);
+    transition:
+        transform 1.8s var(--tn-ease),
+        filter 1.2s var(--tn-ease);
+}
+
+.hero:hover .hero-photo img{
+    transform:scale(1.065);
+}
+
+
+/* =========================================================
+   13. HERO OVERLAY
+   ========================================================= */
+
+.hero-overlay{
+    transition:
+        opacity 1.2s var(--tn-ease);
+}
+
+.hero:hover .hero-overlay{
+    opacity:.92;
+}
+
+
+/* =========================================================
+   14. EYEBROW
+   ========================================================= */
+
+.eyebrow{
+    transition:
+        color .4s var(--tn-ease),
+        letter-spacing .5s var(--tn-ease);
+}
+
+.eyebrow:hover{
+    color:var(--tn-white);
+    letter-spacing:.28em;
+}
+
+.eyebrow::before{
+    transition:
+        width .5s var(--tn-ease),
+        background .4s var(--tn-ease);
+}
+
+.eyebrow:hover::before{
+    width:65px;
+    background:var(--tn-gold-light);
+}
+
+
+/* =========================================================
+   15. EXPERIENCE CARDS
+   ========================================================= */
+
+.experience-card,
+.occasion,
+.gallery-item{
+    transform:translateZ(0);
+
+    transition:
+        transform .75s var(--tn-ease),
+        box-shadow .75s var(--tn-ease);
+}
+
+.experience-card:hover,
+.occasion:hover{
+    transform:translateY(-8px);
+    box-shadow:var(--tn-shadow-hover);
+}
+
+
+/* =========================================================
+   16. EXPERIENCE IMAGES
+   ========================================================= */
+
+.experience-card .photo img,
+.occasion .photo img{
+    transition:
+        transform 1.2s var(--tn-ease),
+        filter 1s var(--tn-ease);
+}
+
+.experience-card:hover .photo img,
+.occasion:hover .photo img{
+    transform:scale(1.075);
+    filter:saturate(1.08) contrast(1.03);
+}
+
+
+/* =========================================================
+   17. EXPERIENCE OVERLAY
+   ========================================================= */
+
+.experience-card::after,
+.occasion::after{
+    transition:
+        opacity .8s var(--tn-ease);
+}
+
+.experience-card:hover::after,
+.occasion:hover::after{
+    opacity:.88;
+}
+
+
+/* =========================================================
+   18. EXPERIENCE TEXT
+   ========================================================= */
+
+.experience-info,
+.occasion-info{
+    transition:
+        transform .7s var(--tn-ease);
+}
+
+.experience-card:hover .experience-info{
+    transform:translateY(-7px);
+}
+
+.occasion:hover .occasion-info{
+    transform:translateY(-6px);
+}
+
+
+/* =========================================================
+   19. TEXT LINKS
+   ========================================================= */
+
+.text-link{
+    position:relative;
+    transition:
+        color .35s var(--tn-ease),
+        letter-spacing .35s var(--tn-ease);
+}
+
+.text-link::after{
+    content:"";
+
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:-6px;
+
+    height:1px;
+
+    background:var(--tn-gold-light);
+
+    transform:scaleX(0);
+    transform-origin:left;
+
+    transition:
+        transform .5s var(--tn-ease);
+}
+
+.experience-card:hover .text-link,
+.text-link:hover{
+    letter-spacing:.19em;
+}
+
+.experience-card:hover .text-link::after,
+.text-link:hover::after{
+    transform:scaleX(1);
+}
+
+
+/* =========================================================
+   20. FOOD IMAGE
+   ========================================================= */
+
+.food-image{
+    transition:
+        transform .8s var(--tn-ease),
+        box-shadow .8s var(--tn-ease);
+}
+
+.food-image:hover{
+    transform:translateY(-8px);
+    box-shadow:var(--tn-shadow-hover);
+}
+
+.food-image img{
+    transition:
+        transform 1.2s var(--tn-ease),
+        filter .8s var(--tn-ease);
+}
+
+.food-image:hover img{
+    transform:scale(1.06);
+    filter:saturate(1.08);
+}
+
+
+/* =========================================================
+   21. FOOD ITEMS
+   ========================================================= */
+
+.food-item{
+    position:relative;
+
+    transition:
+        padding-left .5s var(--tn-ease),
+        background .5s var(--tn-ease);
+}
+
+.food-item::before{
+    content:"";
+
+    position:absolute;
+    left:0;
+    top:0;
+    bottom:0;
+
+    width:2px;
+
+    background:var(--tn-gold);
+
+    transform:scaleY(0);
+    transform-origin:center;
+
+    transition:
+        transform .5s var(--tn-ease);
+}
+
+.food-item:hover{
+    padding-left:14px;
+    background:rgba(199,167,102,.055);
+}
+
+.food-item:hover::before{
+    transform:scaleY(1);
+}
+
+.food-item h4{
+    transition:
+        color .35s var(--tn-ease),
+        transform .35s var(--tn-ease);
+}
+
+.food-item:hover h4{
+    color:var(--tn-gold);
+    transform:translateX(3px);
+}
+
+.price{
+    transition:
+        transform .4s var(--tn-ease),
+        letter-spacing .4s var(--tn-ease);
+}
+
+.food-item:hover .price{
+    transform:scale(1.06);
+    letter-spacing:.04em;
+}
+
+
+/* =========================================================
+   22. BANQUET IMAGE
+   ========================================================= */
+
+.banquet-photo img{
+    transform:scale(1.035);
+
+    transition:
+        transform 1.5s var(--tn-ease),
+        filter 1s var(--tn-ease);
+}
+
+.banquet:hover .banquet-photo img{
+    transform:scale(1.065);
+    filter:saturate(1.06);
+}
+
+
+/* =========================================================
+   23. BANQUET CONTENT
+   ========================================================= */
+
+.banquet-inner{
+    transition:
+        transform .8s var(--tn-ease);
+}
+
+.banquet:hover .banquet-inner{
+    transform:translateX(4px);
+}
+
+
+/* =========================================================
+   24. STATS
+   ========================================================= */
+
+.stat{
+    transition:
+        transform .5s var(--tn-ease);
+}
+
+.stat:hover{
+    transform:translateY(-6px);
+}
+
+.stat strong{
+    transition:
+        color .35s var(--tn-ease),
+        transform .35s var(--tn-ease);
+}
+
+.stat:hover strong{
+    color:var(--tn-white);
+    transform:scale(1.05);
+}
+
+
+/* =========================================================
+   25. OCCASION CARDS
+   ========================================================= */
+
+.occasion{
+    cursor:pointer;
+}
+
+.occasion-info h3{
+    transition:
+        transform .5s var(--tn-ease),
+        color .4s var(--tn-ease);
+}
+
+.occasion:hover h3{
+    transform:translateX(4px);
+    color:var(--tn-gold-light);
+}
+
+
+/* =========================================================
+   26. GALLERY
+   ========================================================= */
+
+.gallery-item{
+    overflow:hidden;
+}
+
+.gallery-item::after{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.08),
+            transparent 45%
+        );
+
+    opacity:0;
+
+    transition:
+        opacity .7s var(--tn-ease);
+
+    pointer-events:none;
+}
+
+.gallery-item:hover{
+    transform:translateY(-6px);
+    box-shadow:var(--tn-shadow-hover);
+}
+
+.gallery-item:hover::after{
+    opacity:1;
+}
+
+.gallery-item img{
+    transition:
+        transform 1.2s var(--tn-ease),
+        filter 1s var(--tn-ease);
+}
+
+.gallery-item:hover img{
+    transform:scale(1.075);
+    filter:saturate(1.08) contrast(1.03);
+}
+
+
+/* =========================================================
+   27. REVIEW
+   ========================================================= */
+
+.review{
+    transition:
+        padding-left .55s var(--tn-ease),
+        background .55s var(--tn-ease);
+}
+
+.review:hover{
+    padding-left:15px;
+    background:rgba(199,167,102,.035);
+}
+
+.review-name{
+    transition:
+        color .35s var(--tn-ease);
+}
+
+.review:hover .review-name{
+    color:var(--tn-gold);
+}
+
+.review-stars{
+    transition:
+        transform .4s var(--tn-ease);
+}
+
+.review:hover .review-stars{
+    transform:scale(1.05);
+}
+
+
+/* =========================================================
+   28. FINAL CTA
+   ========================================================= */
+
+.final h2{
+    transition:
+        transform .8s var(--tn-ease);
+}
+
+.final:hover h2{
+    transform:translateY(-4px);
+}
+
+
+/* =========================================================
+   29. FOOTER LINKS
+   ========================================================= */
+
+.footer-links a{
+    display:inline-block;
+
+    transition:
+        color .35s var(--tn-ease),
+        transform .35s var(--tn-ease);
+}
+
+.footer-links a:hover{
+    transform:translateX(5px);
+}
+
+
+/* =========================================================
+   30. MOBILE MENU
+   ========================================================= */
+
+.mobile-menu{
+    transition:
+        transform .65s var(--tn-ease);
+}
+
+.mobile-links a{
+    transition:
+        padding-left .5s var(--tn-ease),
+        color .35s var(--tn-ease);
+}
+
+.mobile-links a:hover{
+    padding-left:12px;
+    color:var(--tn-gold-light);
+}
+
+
+/* =========================================================
+   31. MENU PAGE — PRODUCT CARDS
+   Works if your menu page uses common card classes.
+   ========================================================= */
+
+.menu-card,
+.menu-item,
+.product-card,
+.food-card{
+    transition:
+        transform .6s var(--tn-ease),
+        box-shadow .6s var(--tn-ease);
+}
+
+.menu-card:hover,
+.menu-item:hover,
+.product-card:hover,
+.food-card:hover{
+    transform:translateY(-7px);
+    box-shadow:var(--tn-shadow-hover);
+}
+
+.menu-card img,
+.menu-item img,
+.product-card img,
+.food-card img{
+    transition:
+        transform 1s var(--tn-ease),
+        filter .8s var(--tn-ease);
+}
+
+.menu-card:hover img,
+.menu-item:hover img,
+.product-card:hover img,
+.food-card:hover img{
+    transform:scale(1.055);
+    filter:saturate(1.06);
+}
+
+
+/* =========================================================
+   32. ADD TO CART
+   ========================================================= */
+
+.add-to-cart,
+.add-cart,
+.cart-button,
+.buy-button{
+    transition:
+        transform .4s var(--tn-ease),
+        background .4s var(--tn-ease),
+        box-shadow .4s var(--tn-ease);
+}
+
+.add-to-cart:hover,
+.add-cart:hover,
+.cart-button:hover,
+.buy-button:hover{
+    transform:translateY(-3px);
+    box-shadow:
+        0 12px 30px rgba(0,0,0,.16);
+}
+
+.add-to-cart:active,
+.add-cart:active,
+.cart-button:active,
+.buy-button:active{
+    transform:
+        translateY(1px)
+        scale(.96);
+}
+
+
+/* =========================================================
+   33. MODAL / POPUP
+   ========================================================= */
+
+.modal,
+.popup,
+.product-modal,
+.menu-modal{
+    transition:
+        opacity .45s var(--tn-ease);
+}
+
+.modal-content,
+.popup-content,
+.product-modal-content,
+.menu-modal-content{
+    animation:
+        tnModalIn
+        .65s
+        var(--tn-ease)
+        both;
+}
+
+@keyframes tnModalIn{
+
+    from{
+        opacity:0;
+        transform:
+            translateY(30px)
+            scale(.96);
+    }
+
+    to{
+        opacity:1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+
+/* =========================================================
+   34. IMAGE DETAIL VIEW
+   ========================================================= */
+
+.modal img,
+.popup img,
+.product-modal img,
+.menu-modal img{
+    transition:
+        transform .8s var(--tn-ease);
+}
+
+.modal img:hover,
+.popup img:hover,
+.product-modal img:hover,
+.menu-modal img:hover{
+    transform:scale(1.025);
+}
+
+
+/* =========================================================
+   35. CLOSE BUTTON
+   ========================================================= */
+
+.close,
+.modal-close,
+.popup-close,
+.close-button{
+    transition:
+        transform .45s var(--tn-ease),
+        background .35s var(--tn-ease);
+}
+
+.close:hover,
+.modal-close:hover,
+.popup-close:hover,
+.close-button:hover{
+    transform:rotate(90deg);
+}
+
+
+/* =========================================================
+   36. PAGE LOADING FEEL
+   ========================================================= */
+
+@keyframes tnPageIn{
+
+    from{
+        opacity:0;
+        transform:translateY(12px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+body{
+    animation:
+        tnPageIn
+        .8s
+        var(--tn-ease)
+        both;
+}
+
+
+/* =========================================================
+   37. SECTION REVEAL SUPPORT
+   ========================================================= */
+
+section{
+    position:relative;
+}
+
+
+/* =========================================================
+   38. SUBTLE HEADING MOTION
+   ========================================================= */
+
+h1,
+h2,
+h3{
+    transition:
+        transform .7s var(--tn-ease);
+}
+
+.experience:hover h2,
+.food:hover h2,
+.gallery:hover h2,
+.testimonial:hover h2{
+    transform:translateY(-3px);
+}
+
+
+/* =========================================================
+   39. GOLD TEXT
+   ========================================================= */
+
+em{
+    transition:
+        color .4s var(--tn-ease);
+}
+
+
+/* =========================================================
+   40. TOUCH DEVICES
+   ========================================================= */
+
+@media (hover:none){
+
+    .button:active,
+    .header-button:active{
+        transform:scale(.97);
+    }
+
+    .experience-card:active,
+    .occasion:active,
+    .gallery-item:active{
+        transform:scale(.985);
+    }
+
+    .food-item:active{
+        padding-left:10px;
+    }
+
+}
+
+
+/* =========================================================
+   41. TABLET
+   ========================================================= */
+
+@media(max-width:850px){
+
+    .experience-card:hover,
+    .occasion:hover,
+    .gallery-item:hover,
+    .food-image:hover{
+        transform:none;
+        box-shadow:none;
+    }
+
+    .hero:hover .hero-photo img,
+    .banquet:hover .banquet-photo img{
+        transform:scale(1.045);
+    }
+
+}
+
+
+/* =========================================================
+   42. MOBILE
+   ========================================================= */
+
+@media(max-width:600px){
+
+    .button:hover,
+    .header-button:hover{
+        transform:none;
+    }
+
+    .experience-card:hover .experience-info,
+    .occasion:hover .occasion-info{
+        transform:none;
+    }
+
+    .gallery-item:hover{
+        transform:none;
+    }
+
+    .review:hover{
+        padding-left:0;
+    }
+
+    .food-item:hover{
+        padding-left:0;
+    }
+
+}
+
+
+/* =========================================================
+   43. REDUCED MOTION
+   Accessibility
+   ========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+
+        animation-duration:.01ms !important;
+        animation-iteration-count:1 !important;
+        transition-duration:.01ms !important;
+        scroll-behavior:auto !important;
+
+    }
+
+}
+
+
+/* =========================================================
+   44. PREMIUM SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-track{
+    background:var(--tn-green-dark);
+}
+
+::-webkit-scrollbar-thumb{
+    background:var(--tn-gold);
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:var(--tn-gold-light);
+}
+
+
+/* =========================================================
+   45. IMAGE DRAG PREVENTION
+   ========================================================= */
+
+img{
+    user-select:none;
+    -webkit-user-drag:none;
+}
+
+
+/* =========================================================
+   46. FOCUS STATES
+   ========================================================= */
+
+a:focus-visible,
+button:focus-visible{
+    outline:2px solid var(--tn-gold-light);
+    outline-offset:5px;
+}
+
+
+/* =========================================================
+   47. FINAL POLISH
+   ========================================================= */
+
+.experience-card,
+.occasion,
+.gallery-item,
+.food-image,
+.menu-card,
+.menu-item,
+.product-card,
+.food-card{
+    will-change:transform;
+}
+
+.button,
+.header-button,
+.cart,
+.text-link{
+    will-change:transform;
+}
+
+
+/* =========================================================
+   END — TUNIGHT UNIVERSAL EXPERIENCE CSS
+   ========================================================= */
+```
