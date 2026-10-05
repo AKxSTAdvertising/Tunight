@@ -1,0 +1,2033 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Experiences & Events — TUNIGHT</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --green:#09271d;
+    --green-2:#103b2d;
+    --green-3:#174936;
+
+    --gold:#c7a766;
+    --gold-light:#dfc98f;
+
+    --cream:#f3eee3;
+    --cream-light:#faf8f2;
+
+    --white:#fff;
+    --black:#07100c;
+
+    --text:#17231e;
+    --muted:#707872;
+
+    --line:rgba(23,35,30,.14);
+
+    --container:1280px;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:var(--cream);
+    color:var(--text);
+    font-family:"DM Sans",sans-serif;
+    overflow-x:hidden;
+}
+
+body.no-scroll{
+    overflow:hidden;
+}
+
+img{
+    display:block;
+    width:100%;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+button{
+    font:inherit;
+}
+
+.container{
+    width:min(var(--container),90%);
+    margin:auto;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:100;
+    color:white;
+    border-bottom:1px solid rgba(255,255,255,.15);
+}
+
+.nav{
+    min-height:88px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:30px;
+}
+
+.logo{
+    font-family:"Playfair Display",serif;
+    font-size:31px;
+    letter-spacing:-1.5px;
+    white-space:nowrap;
+}
+
+.logo span{
+    color:var(--gold-light);
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:28px;
+}
+
+.nav-links a{
+    position:relative;
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:.13em;
+    text-transform:uppercase;
+    color:#f7f6f0;
+}
+
+.nav-links a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-9px;
+    width:0;
+    height:1px;
+    background:var(--gold-light);
+    transition:.3s;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after{
+    width:100%;
+}
+
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.cart{
+    width:42px;
+    height:42px;
+    border:1px solid rgba(255,255,255,.28);
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    font-size:15px;
+}
+
+.header-button{
+    padding:14px 21px;
+    background:var(--gold);
+    color:var(--green);
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:.13em;
+    text-transform:uppercase;
+}
+
+.menu-button{
+    display:none;
+    width:42px;
+    height:42px;
+    border:1px solid rgba(255,255,255,.3);
+    background:transparent;
+    color:white;
+    cursor:pointer;
+}
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+.mobile-menu{
+    position:fixed;
+    inset:0;
+    z-index:1000;
+    background:var(--green);
+    color:white;
+    padding:24px;
+    transform:translateX(100%);
+    transition:.4s ease;
+}
+
+.mobile-menu.open{
+    transform:translateX(0);
+}
+
+.mobile-menu-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.mobile-close{
+    width:42px;
+    height:42px;
+    border:1px solid rgba(255,255,255,.25);
+    background:transparent;
+    color:white;
+    font-size:25px;
+    cursor:pointer;
+}
+
+.mobile-links{
+    margin-top:55px;
+}
+
+.mobile-links a{
+    display:block;
+    padding:17px 0;
+    border-bottom:1px solid rgba(255,255,255,.1);
+    font-family:"Playfair Display",serif;
+    font-size:34px;
+}
+
+/* =========================
+   COMMON
+========================= */
+
+.eyebrow{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:var(--gold-light);
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:.23em;
+    text-transform:uppercase;
+}
+
+.eyebrow::before{
+    content:"";
+    width:44px;
+    height:1px;
+    background:var(--gold);
+}
+
+.button{
+    min-height:53px;
+    padding:0 27px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+}
+
+.button-gold{
+    background:var(--gold);
+    color:var(--green);
+}
+
+.button-outline{
+    border:1px solid rgba(255,255,255,.45);
+    color:white;
+}
+
+.photo{
+    position:relative;
+    overflow:hidden;
+    background:var(--green-2);
+}
+
+.photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.8s ease;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    min-height:88vh;
+    position:relative;
+    display:flex;
+    align-items:center;
+    color:white;
+    background:var(--green);
+    overflow:hidden;
+}
+
+.hero-photo{
+    position:absolute;
+    inset:0;
+}
+
+.hero-photo img{
+    object-position:center;
+    animation:heroScale 12s ease-out forwards;
+}
+
+@keyframes heroScale{
+    from{
+        transform:scale(1.08);
+    }
+
+    to{
+        transform:scale(1);
+    }
+}
+
+.hero-overlay{
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(2,17,12,.95),
+            rgba(2,17,12,.63) 52%,
+            rgba(2,17,12,.22)
+        ),
+        linear-gradient(
+            0deg,
+            rgba(2,17,12,.8),
+            transparent 65%
+        );
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    padding-top:80px;
+}
+
+.hero h1{
+    max-width:900px;
+    margin-top:27px;
+    font-family:"Playfair Display",serif;
+    font-size:clamp(68px,9vw,128px);
+    line-height:.84;
+    font-weight:400;
+    letter-spacing:-.075em;
+}
+
+.hero h1 em{
+    color:var(--gold-light);
+}
+
+.hero-text{
+    max-width:570px;
+    margin-top:34px;
+    color:#d0d8d3;
+    font-size:17px;
+    line-height:1.85;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:12px;
+    margin-top:36px;
+}
+
+/* =========================
+   INTRO
+========================= */
+
+.intro{
+    padding:145px 0;
+    background:var(--cream-light);
+}
+
+.intro-grid{
+    display:grid;
+    grid-template-columns:70px 1.1fr .9fr;
+    gap:65px;
+}
+
+.vertical{
+    writing-mode:vertical-rl;
+    transform:rotate(180deg);
+    color:var(--gold);
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+}
+
+.intro h2{
+    font-family:"Playfair Display",serif;
+    font-size:clamp(56px,6.4vw,88px);
+    line-height:.9;
+    font-weight:400;
+    letter-spacing:-.065em;
+}
+
+.intro h2 em{
+    color:var(--gold);
+}
+
+.intro-copy h3{
+    font-family:"Playfair Display",serif;
+    font-size:29px;
+    font-weight:400;
+    line-height:1.35;
+}
+
+.intro-copy p{
+    margin-top:21px;
+    color:var(--muted);
+    font-size:16px;
+    line-height:1.9;
+}
+
+/* =========================
+   EXPERIENCE FEATURE
+========================= */
+
+.feature{
+    padding:145px 0;
+    background:var(--green);
+    color:white;
+}
+
+.feature-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:50px;
+    margin-bottom:65px;
+}
+
+.feature-head h2{
+    margin-top:20px;
+    font-family:"Playfair Display",serif;
+    font-size:clamp(58px,6.5vw,90px);
+    line-height:.87;
+    font-weight:400;
+    letter-spacing:-.065em;
+}
+
+.feature-head h2 em{
+    color:var(--gold-light);
+}
+
+.feature-head p{
+    max-width:420px;
+    color:#aeb9b3;
+    font-size:15px;
+    line-height:1.85;
+}
+
+.feature-main{
+    display:grid;
+    grid-template-columns:1.25fr .75fr;
+    min-height:650px;
+}
+
+.feature-image{
+    min-height:650px;
+}
+
+.feature-image img{
+    object-position:center;
+}
+
+.feature-image:hover img{
+    transform:scale(1.04);
+}
+
+.feature-content{
+    padding:60px 55px;
+    background:var(--green-2);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.feature-number{
+    color:var(--gold-light);
+    font-size:10px;
+    letter-spacing:.2em;
+}
+
+.feature-content h3{
+    margin-top:15px;
+    font-family:"Playfair Display",serif;
+    font-size:52px;
+    line-height:.95;
+    font-weight:400;
+}
+
+.feature-content p{
+    margin-top:25px;
+    color:#bac5bf;
+    font-size:15px;
+    line-height:1.9;
+}
+
+.feature-list{
+    margin-top:35px;
+    border-top:1px solid rgba(255,255,255,.12);
+}
+
+.feature-list div{
+    padding:14px 0;
+    border-bottom:1px solid rgba(255,255,255,.12);
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    color:#c7d0cb;
+    font-size:12px;
+}
+
+.feature-list span{
+    color:var(--gold-light);
+}
+
+/* =========================
+   EVENTS
+========================= */
+
+.events{
+    padding:150px 0;
+    background:var(--cream);
+}
+
+.events-heading{
+    max-width:760px;
+}
+
+.events-heading h2{
+    margin-top:20px;
+    font-family:"Playfair Display",serif;
+    font-size:clamp(58px,6.5vw,90px);
+    line-height:.88;
+    font-weight:400;
+    letter-spacing:-.065em;
+}
+
+.events-heading h2 em{
+    color:var(--gold);
+}
+
+.events-heading p{
+    max-width:570px;
+    margin-top:28px;
+    color:var(--muted);
+    font-size:16px;
+    line-height:1.9;
+}
+
+.event-list{
+    margin-top:75px;
+    border-top:1px solid var(--line);
+}
+
+.event-card{
+    display:grid;
+    grid-template-columns:100px 310px 1fr 130px;
+    align-items:center;
+    gap:35px;
+    padding:28px 0;
+    border-bottom:1px solid var(--line);
+    transition:.35s ease;
+}
+
+.event-card:hover{
+    padding-left:15px;
+    padding-right:15px;
+    background:rgba(255,255,255,.4);
+}
+
+.event-number{
+    color:var(--gold);
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.15em;
+}
+
+.event-image{
+    height:185px;
+}
+
+.event-image img{
+    object-position:center;
+}
+
+.event-card:hover .event-image img{
+    transform:scale(1.05);
+}
+
+.event-info h3{
+    font-family:"Playfair Display",serif;
+    font-size:34px;
+    font-weight:400;
+}
+
+.event-info p{
+    max-width:500px;
+    margin-top:10px;
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.75;
+}
+
+.event-tag{
+    display:inline-block;
+    margin-top:16px;
+    color:var(--gold);
+    font-size:9px;
+    font-weight:700;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+}
+
+.event-arrow{
+    justify-self:end;
+    width:54px;
+    height:54px;
+    border:1px solid var(--line);
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    color:var(--gold);
+    transition:.3s;
+}
+
+.event-card:hover .event-arrow{
+    background:var(--green);
+    color:var(--gold-light);
+    border-color:var(--green);
+}
+
+/* =========================
+   BANQUET
+========================= */
+
+.banquet{
+    min-height:720px;
+    position:relative;
+    display:flex;
+    align-items:center;
+    color:white;
+    overflow:hidden;
+}
+
+.banquet-photo{
+    position:absolute;
+    inset:0;
+}
+
+.banquet-photo img{
+    object-position:center;
+}
+
+.banquet-overlay{
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(2,17,12,.96),
+            rgba(2,17,12,.57) 58%,
+            rgba(2,17,12,.15)
+        );
+}
+
+.banquet-content{
+    position:relative;
+    z-index:2;
+}
+
+.banquet-inner{
+    max-width:800px;
+}
+
+.banquet h2{
+    margin-top:20px;
+    font-family:"Playfair Display",serif;
+    font-size:clamp(62px,7.4vw,106px);
+    line-height:.84;
+    font-weight:400;
+    letter-spacing:-.07em;
+}
+
+.banquet h2 em{
+    color:var(--gold-light);
+}
+
+.banquet p{
+    max-width:570px;
+    margin-top:30px;
+    color:#c1cbc5;
+    font-size:17px;
+    line-height:1.85;
+}
+
+.stats{
+    display:flex;
+    gap:55px;
+    margin-top:43px;
+}
+
+.stat strong{
+    display:block;
+    color:var(--gold-light);
+    font-family:"Playfair Display",serif;
+    font-size:40px;
+    font-weight:400;
+}
+
+.stat span{
+    display:block;
+    margin-top:5px;
+    color:#a9b5ae;
+    font-size:10px;
+    letter-spacing:.13em;
+    text-transform:uppercase;
+}
+
+/* =========================
+   HOW IT WORKS
+========================= */
+
+.process{
+    padding:145px 0;
+    background:var(--cream-light);
+}
+
+.process-title{
+    text-align:center;
+    max-width:800px;
+    margin:auto;
+}
+
+.process-title .eyebrow{
+    justify-content:center;
+}
+
+.process-title h2{
+    margin-top:20px;
+    font-family:"Playfair Display",serif;
+    font-size:clamp(58px,6.5vw,90px);
+    line-height:.88;
+    font-weight:400;
+    letter-spacing:-.065em;
+}
+
+.process-title h2 em{
+    color:var(--gold);
+}
+
+.process-title p{
+    max-width:570px;
+    margin:28px auto 0;
+    color:var(--muted);
+    font-size:16px;
+    line-height:1.9;
+}
+
+.process-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+    margin-top:75px;
+}
+
+.process-card{
+    padding:45px 35px;
+    min-height:300px;
+    background:var(--cream);
+    border:1px solid var(--line);
+    position:relative;
+}
+
+.process-card-number{
+    color:var(--gold);
+    font-size:11px;
+    letter-spacing:.18em;
+}
+
+.process-card h3{
+    margin-top:55px;
+    font-family:"Playfair Display",serif;
+    font-size:32px;
+    font-weight:400;
+}
+
+.process-card p{
+    margin-top:15px;
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.8;
+}
+
+/* =========================
+   CTA
+========================= */
+
+.final{
+    padding:135px 0;
+    background:var(--green);
+    color:white;
+    text-align:center;
+}
+
+.final .eyebrow{
+    justify-content:center;
+}
+
+.final h2{
+    max-width:900px;
+    margin:25px auto 0;
+    font-family:"Playfair Display",serif;
+    font-size:clamp(65px,8vw,112px);
+    line-height:.84;
+    font-weight:400;
+    letter-spacing:-.07em;
+}
+
+.final h2 em{
+    color:var(--gold-light);
+}
+
+.final p{
+    max-width:530px;
+    margin:30px auto 0;
+    color:#aeb9b2;
+    font-size:16px;
+    line-height:1.8;
+}
+
+.final-buttons{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    margin-top:35px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+    padding:80px 0 25px;
+    background:#03130e;
+    color:white;
+}
+
+.footer-grid{
+    display:grid;
+    grid-template-columns:1.5fr .7fr .7fr .9fr;
+    gap:60px;
+}
+
+.footer-logo{
+    font-family:"Playfair Display",serif;
+    font-size:37px;
+}
+
+.footer-logo span{
+    color:var(--gold);
+}
+
+.footer-description{
+    max-width:360px;
+    margin-top:18px;
+    color:#7d8a83;
+    font-size:14px;
+    line-height:1.8;
+}
+
+.footer h4{
+    margin-bottom:20px;
+    color:#d7d0c1;
+    font-size:10px;
+    letter-spacing:.17em;
+    text-transform:uppercase;
+}
+
+.footer-links{
+    display:grid;
+    gap:12px;
+}
+
+.footer-links a{
+    color:#84918b;
+    font-size:13px;
+}
+
+.footer-links a:hover{
+    color:var(--gold-light);
+}
+
+.footer-bottom{
+    display:flex;
+    justify-content:space-between;
+    margin-top:60px;
+    padding-top:22px;
+    border-top:1px solid rgba(255,255,255,.1);
+    color:#5f6d66;
+    font-size:11px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:1100px){
+
+    .nav-links{
+        gap:17px;
+    }
+
+    .nav-links a{
+        font-size:8px;
+    }
+
+    .intro-grid{
+        grid-template-columns:45px 1fr 1fr;
+        gap:35px;
+    }
+
+    .feature-main{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .event-card{
+        grid-template-columns:60px 250px 1fr 80px;
+        gap:25px;
+    }
+
+}
+
+@media(max-width:850px){
+
+    .nav-links,
+    .header-button{
+        display:none;
+    }
+
+    .menu-button{
+        display:block;
+    }
+
+    .intro-grid{
+        grid-template-columns:1fr;
+    }
+
+    .vertical{
+        writing-mode:initial;
+        transform:none;
+    }
+
+    .feature-main{
+        grid-template-columns:1fr;
+    }
+
+    .feature-image{
+        min-height:500px;
+    }
+
+    .event-card{
+        grid-template-columns:60px 230px 1fr 60px;
+    }
+
+    .process-grid{
+        grid-template-columns:1fr;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .container{
+        width:calc(100% - 40px);
+    }
+
+    .nav{
+        min-height:76px;
+    }
+
+    .logo{
+        font-size:28px;
+    }
+
+    .hero{
+        min-height:720px;
+    }
+
+    .hero-content{
+        padding-top:45px;
+    }
+
+    .hero h1{
+        font-size:62px;
+    }
+
+    .hero-text{
+        font-size:15px;
+    }
+
+    .hero-buttons{
+        flex-wrap:wrap;
+    }
+
+    .intro,
+    .feature,
+    .events,
+    .process,
+    .final{
+        padding:90px 0;
+    }
+
+    .feature-head{
+        display:block;
+    }
+
+    .feature-head p{
+        margin-top:25px;
+    }
+
+    .feature-image{
+        min-height:420px;
+    }
+
+    .feature-content{
+        padding:40px 28px;
+    }
+
+    .feature-content h3{
+        font-size:42px;
+    }
+
+    .event-list{
+        margin-top:50px;
+    }
+
+    .event-card{
+        grid-template-columns:45px 1fr;
+        gap:18px;
+        padding:25px 0;
+    }
+
+    .event-image{
+        grid-column:2;
+        height:240px;
+        order:2;
+    }
+
+    .event-info{
+        grid-column:2;
+        order:3;
+    }
+
+    .event-number{
+        grid-column:1;
+        grid-row:1 / span 3;
+        align-self:start;
+        padding-top:4px;
+    }
+
+    .event-arrow{
+        display:none;
+    }
+
+    .banquet{
+        min-height:650px;
+    }
+
+    .stats{
+        gap:25px;
+        flex-wrap:wrap;
+    }
+
+    .stat strong{
+        font-size:32px;
+    }
+
+    .process-card{
+        min-height:260px;
+    }
+
+    .final-buttons{
+        flex-wrap:wrap;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr;
+        gap:35px;
+    }
+
+    .footer-bottom{
+        display:block;
+        line-height:2;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+    <div class="container nav">
+
+        <a href="index.html" class="logo">
+            TU<span>NIGHT</span>
+        </a>
+
+        <nav class="nav-links">
+
+            <a href="index.html">Home</a>
+
+            <a href="our-story.html">Our Story</a>
+
+            <a href="menu.html">Menu</a>
+
+            <a href="events.html" class="active">Experiences</a>
+
+            <a href="gallery.html">Gallery</a>
+
+            <a href="offers.html">Offers</a>
+
+            <a href="contact.html">Contact</a>
+
+        </nav>
+
+        <div class="nav-right">
+
+            <a href="cart.html" class="cart">
+                🛒
+            </a>
+
+            <a href="booking.html" class="header-button">
+                Reserve
+            </a>
+
+            <button class="menu-button" id="menuOpen">
+                ☰
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     MOBILE MENU
+========================= -->
+
+<div class="mobile-menu" id="mobileMenu">
+
+    <div class="mobile-menu-top">
+
+        <div class="logo">
+            TU<span>NIGHT</span>
+        </div>
+
+        <button class="mobile-close" id="menuClose">
+            ×
+        </button>
+
+    </div>
+
+    <nav class="mobile-links">
+
+        <a href="index.html">Home</a>
+
+        <a href="our-story.html">Our Story</a>
+
+        <a href="menu.html">Menu</a>
+
+        <a href="events.html">Experiences</a>
+
+        <a href="gallery.html">Gallery</a>
+
+        <a href="offers.html">Offers</a>
+
+        <a href="contact.html">Contact</a>
+
+    </nav>
+
+</div>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <div class="hero-photo photo">
+
+        <img
+            src="assets/images/events-hero.jpg"
+            alt="TUNIGHT experiences and celebrations">
+
+    </div>
+
+    <div class="hero-overlay"></div>
+
+    <div class="container hero-content">
+
+        <div class="eyebrow">
+            Experiences · Celebrations · Events
+        </div>
+
+        <h1>
+            Every occasion<br>
+            deserves a <em>night.</em>
+        </h1>
+
+        <p class="hero-text">
+            From rooftop dinners to birthdays, corporate gatherings
+            and unforgettable celebrations — make your next occasion
+            a TUNIGHT experience.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="booking.html" class="button button-gold">
+                Plan Your Event
+            </a>
+
+            <a href="#experiences" class="button button-outline">
+                Explore Experiences
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     INTRO
+========================= -->
+
+<section class="intro">
+
+    <div class="container intro-grid">
+
+        <div class="vertical">
+            01 — Experiences
+        </div>
+
+        <div>
+
+            <h2>
+                Come for the<br>
+                occasion.<br>
+                Stay for the <em>night.</em>
+            </h2>
+
+        </div>
+
+        <div class="intro-copy">
+
+            <h3>
+                One destination for dinners, celebrations and everything in between.
+            </h3>
+
+            <p>
+                Whether it's a quiet dinner with someone special or
+                a room full of people celebrating together, TUNIGHT
+                gives every occasion its own atmosphere.
+            </p>
+
+            <p>
+                Tell us what you're planning and we'll help you
+                create an evening worth remembering.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FEATURE EXPERIENCE
+========================= -->
+
+<section class="feature" id="experiences">
+
+    <div class="container">
+
+        <div class="feature-head">
+
+            <div>
+
+                <div class="eyebrow">
+                    02 — Signature Experience
+                </div>
+
+                <h2>
+                    Start with<br>
+                    the <em>rooftop.</em>
+                </h2>
+
+            </div>
+
+            <p>
+                Open-air dining, warm lights, good food and the city
+                around you. Our rooftop is made for relaxed evenings
+                and conversations that go on a little longer.
+            </p>
+
+        </div>
+
+        <div class="feature-main">
+
+            <div class="feature-image photo">
+
+                <img
+                    src="assets/images/rooftop.jpg"
+                    alt="TUNIGHT rooftop dining">
+
+            </div>
+
+            <div class="feature-content">
+
+                <div class="feature-number">
+                    01 / ROOFTOP DINING
+                </div>
+
+                <h3>
+                    Dinner<br>
+                    under the<br>
+                    <em>stars.</em>
+                </h3>
+
+                <p>
+                    A relaxed setting for date nights, family dinners,
+                    friends and anyone looking to enjoy good food
+                    without rushing the evening.
+                </p>
+
+                <div class="feature-list">
+
+                    <div>
+                        <span>01</span>
+                        Open-air rooftop
+                    </div>
+
+                    <div>
+                        <span>02</span>
+                        Vegetarian dining
+                    </div>
+
+                    <div>
+                        <span>03</span>
+                        Evening ambience
+                    </div>
+
+                    <div>
+                        <span>04</span>
+                        Group seating
+                    </div>
+
+                </div>
+
+                <a
+                    href="booking.html"
+                    class="button button-gold"
+                    style="margin-top:30px;"
+                >
+                    Reserve A Table
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     EVENTS
+========================= -->
+
+<section class="events">
+
+    <div class="container">
+
+        <div class="events-heading">
+
+            <div class="eyebrow">
+                03 — Celebrations
+            </div>
+
+            <h2>
+                Your moments.<br>
+                Our <em>space.</em>
+            </h2>
+
+            <p>
+                From intimate gatherings to larger celebrations,
+                choose the experience that fits your occasion.
+            </p>
+
+        </div>
+
+
+        <div class="event-list">
+
+
+            <!-- BIRTHDAY -->
+
+            <a href="booking.html?event=birthday" class="event-card">
+
+                <div class="event-number">
+                    01
+                </div>
+
+                <div class="event-image photo">
+
+                    <img
+                        src="assets/images/event-01.jpg"
+                        alt="Birthday celebration at TUNIGHT">
+
+                </div>
+
+                <div class="event-info">
+
+                    <h3>
+                        Birthday Celebrations
+                    </h3>
+
+                    <p>
+                        Make birthdays more than just another dinner.
+                        Bring your people together for food, music,
+                        décor and a night worth remembering.
+                    </p>
+
+                    <span class="event-tag">
+                        Birthdays
+                    </span>
+
+                </div>
+
+                <div class="event-arrow">
+                    →
+                </div>
+
+            </a>
+
+
+            <!-- CORPORATE -->
+
+            <a href="booking.html?event=corporate" class="event-card">
+
+                <div class="event-number">
+                    02
+                </div>
+
+                <div class="event-image photo">
+
+                    <img
+                        src="assets/images/event-02.jpg"
+                        alt="Corporate event at TUNIGHT">
+
+                </div>
+
+                <div class="event-info">
+
+                    <h3>
+                        Corporate Nights
+                    </h3>
+
+                    <p>
+                        Team dinners, office parties, client evenings
+                        and corporate celebrations in a comfortable
+                        and presentable setting.
+                    </p>
+
+                    <span class="event-tag">
+                        Corporate
+                    </span>
+
+                </div>
+
+                <div class="event-arrow">
+                    →
+                </div>
+
+            </a>
+
+
+            <!-- FAMILY -->
+
+            <a href="booking.html?event=family" class="event-card">
+
+                <div class="event-number">
+                    03
+                </div>
+
+                <div class="event-image photo">
+
+                    <img
+                        src="assets/images/event-03.jpg"
+                        alt="Family celebration at TUNIGHT">
+
+                </div>
+
+                <div class="event-info">
+
+                    <h3>
+                        Family Celebrations
+                    </h3>
+
+                    <p>
+                        Gather the whole family around one table
+                        and enjoy an evening designed around food,
+                        conversations and togetherness.
+                    </p>
+
+                    <span class="event-tag">
+                        Family
+                    </span>
+
+                </div>
+
+                <div class="event-arrow">
+                    →
+                </div>
+
+            </a>
+
+
+            <!-- ANNIVERSARY -->
+
+            <a href="booking.html?event=anniversary" class="event-card">
+
+                <div class="event-number">
+                    04
+                </div>
+
+                <div class="event-image photo">
+
+                    <img
+                        src="assets/images/event-04.jpg"
+                        alt="Anniversary celebration at TUNIGHT">
+
+                </div>
+
+                <div class="event-info">
+
+                    <h3>
+                        Anniversaries & Special Moments
+                    </h3>
+
+                    <p>
+                        Celebrate milestones, anniversaries and
+                        personal moments in an atmosphere made
+                        for slowing down and enjoying the evening.
+                    </p>
+
+                    <span class="event-tag">
+                        Special Moments
+                    </span>
+
+                </div>
+
+                <div class="event-arrow">
+                    →
+                </div>
+
+            </a>
+
+
+            <!-- PARTIES -->
+
+            <a href="booking.html?event=party" class="event-card">
+
+                <div class="event-number">
+                    05
+                </div>
+
+                <div class="event-image photo">
+
+                    <img
+                        src="assets/images/event-05.jpg"
+                        alt="Party at TUNIGHT">
+
+                </div>
+
+                <div class="event-info">
+
+                    <h3>
+                        Private Parties
+                    </h3>
+
+                    <p>
+                        Get your friends together, turn up the music
+                        and make the night yours with a private
+                        celebration at TUNIGHT.
+                    </p>
+
+                    <span class="event-tag">
+                        Parties
+                    </span>
+
+                </div>
+
+                <div class="event-arrow">
+                    →
+                </div>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     BANQUET
+========================= -->
+
+<section class="banquet">
+
+    <div class="banquet-photo photo">
+
+        <img
+            src="assets/images/banquet-main.jpg"
+            alt="TUNIGHT banquet hall">
+
+    </div>
+
+    <div class="banquet-overlay"></div>
+
+    <div class="container banquet-content">
+
+        <div class="banquet-inner">
+
+            <div class="eyebrow">
+                04 — Banquets & Private Events
+            </div>
+
+            <h2>
+                Bring everyone<br>
+                to the <em>table.</em>
+            </h2>
+
+            <p>
+                Planning something bigger? Our banquet experience
+                gives you the space and flexibility to bring your
+                guests together for an evening that feels completely yours.
+            </p>
+
+            <div class="stats">
+
+                <div class="stat">
+
+                    <strong>
+                        10–150
+                    </strong>
+
+                    <span>
+                        Guests
+                    </span>
+
+                </div>
+
+                <div class="stat">
+
+                    <strong>
+                        DJ
+                    </strong>
+
+                    <span>
+                        Available
+                    </span>
+
+                </div>
+
+                <div class="stat">
+
+                    <strong>
+                        Catering
+                    </strong>
+
+                    <span>
+                        Available
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="hero-buttons">
+
+                <a href="booking.html" class="button button-gold">
+                    Enquire For Your Event
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PROCESS
+========================= -->
+
+<section class="process">
+
+    <div class="container">
+
+        <div class="process-title">
+
+            <div class="eyebrow">
+                05 — Make It Yours
+            </div>
+
+            <h2>
+                Planning your<br>
+                <em>night</em> is simple.
+            </h2>
+
+            <p>
+                Tell us what you're celebrating, how many people
+                you're bringing and what you have in mind.
+                We'll take it from there.
+            </p>
+
+        </div>
+
+
+        <div class="process-grid">
+
+            <div class="process-card">
+
+                <div class="process-card-number">
+                    01 / TELL US
+                </div>
+
+                <h3>
+                    Share your plan.
+                </h3>
+
+                <p>
+                    Choose your occasion, date, guest count
+                    and preferred experience.
+                </p>
+
+            </div>
+
+
+            <div class="process-card">
+
+                <div class="process-card-number">
+                    02 / PLAN
+                </div>
+
+                <h3>
+                    We shape the evening.
+                </h3>
+
+                <p>
+                    Our team helps you with seating, food,
+                    décor, music and other requirements.
+                </p>
+
+            </div>
+
+
+            <div class="process-card">
+
+                <div class="process-card-number">
+                    03 / CELEBRATE
+                </div>
+
+                <h3>
+                    You enjoy the night.
+                </h3>
+
+                <p>
+                    Arrive, settle in and let TUNIGHT take care
+                    of the evening.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FINAL CTA
+========================= -->
+
+<section class="final">
+
+    <div class="container">
+
+        <div class="eyebrow">
+            06 — Your Occasion Starts Here
+        </div>
+
+        <h2>
+            Let's make it<br>
+            a <em>TUNIGHT.</em>
+        </h2>
+
+        <p>
+            Tell us what you're planning and we'll help you
+            create an evening your guests will remember.
+        </p>
+
+        <div class="final-buttons">
+
+            <a href="booking.html" class="button button-gold">
+                Plan Your Event
+            </a>
+
+            <a href="contact.html" class="button button-outline">
+                Contact Us
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="footer">
+
+    <div class="container footer-grid">
+
+        <div>
+
+            <div class="footer-logo">
+                TU<span>NIGHT</span>
+            </div>
+
+            <p class="footer-description">
+                Terrace dining, food, celebrations and banquet
+                experiences in Raj Nagar, Ghaziabad.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h4>
+                Explore
+            </h4>
+
+            <div class="footer-links">
+
+                <a href="our-story.html">
+                    Our Story
+                </a>
+
+                <a href="menu.html">
+                    Menu
+                </a>
+
+                <a href="events.html">
+                    Experiences
+                </a>
+
+                <a href="gallery.html">
+                    Gallery
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div>
+
+            <h4>
+                Discover
+            </h4>
+
+            <div class="footer-links">
+
+                <a href="offers.html">
+                    Offers
+                </a>
+
+                <a href="cart.html">
+                    Order Online
+                </a>
+
+                <a href="booking.html">
+                    Reservations
+                </a>
+
+                <a href="contact.html">
+                    Contact
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div>
+
+            <h4>
+                Visit
+            </h4>
+
+            <div class="footer-links">
+
+                <a href="contact.html">
+                    Raj Nagar, Ghaziabad
+                </a>
+
+                <a href="contact.html">
+                    Get Directions
+                </a>
+
+                <a href="contact.html">
+                    Contact TUNIGHT
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="container footer-bottom">
+
+        <div>
+            © 2026 TUNIGHT. All rights reserved.
+        </div>
+
+        <div>
+            Raj Nagar · Ghaziabad
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+const menuOpen = document.getElementById("menuOpen");
+const menuClose = document.getElementById("menuClose");
+const mobileMenu = document.getElementById("mobileMenu");
+
+menuOpen.addEventListener("click", function(){
+
+    mobileMenu.classList.add("open");
+    document.body.classList.add("no-scroll");
+
+});
+
+menuClose.addEventListener("click", function(){
+
+    mobileMenu.classList.remove("open");
+    document.body.classList.remove("no-scroll");
+
+});
+
+
+document.querySelectorAll(".mobile-links a").forEach(function(link){
+
+    link.addEventListener("click", function(){
+
+        mobileMenu.classList.remove("open");
+        document.body.classList.remove("no-scroll");
+
+    });
+
+});
+
+
+document.querySelectorAll("img").forEach(function(image){
+
+    image.addEventListener("error", function(){
+
+        this.style.display = "none";
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
+```
