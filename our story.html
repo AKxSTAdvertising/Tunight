@@ -1157,6 +1157,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 @media(max-width:600px){.container{width:88%}.hero-content{padding-top:90px}.hero h1{font-size:clamp(52px,15vw,82px)}.hero-text{font-size:14px;margin-top:25px}.hero-buttons{flex-wrap:wrap;margin-top:28px}.button{padding:0 18px;min-height:49px}.hero-bottom{bottom:17px}.hero-bottom-inner{font-size:8px}.intro-grid{grid-template-columns:1fr;gap:24px}.vertical{writing-mode:initial;transform:none}.menu-hero,.story-hero{min-height:72svh}.header-button{padding:12px 13px}.logo{font-size:22px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hero-photo img{animation:none!important}.reveal-ready [data-reveal]{opacity:1;transform:none;transition:none}}
 </style>
+  <link rel="stylesheet" href="global.css?v=20261017">
 </head>
 
 <body>
@@ -2025,5 +2026,6 @@ document.querySelectorAll(".mobile-links a").forEach(function(link){
   document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',()=>{const mobile=document.querySelector('.mobile-menu');if(mobile){mobile.classList.remove('open');document.body.style.overflow='';}}));
 })();
 </script>
+  <script src="global.js?v=20261017" defer></script>
 </body>
 </html>
