@@ -1387,7 +1387,6 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 <!-- TUNIGHT cinematic entry overlay: entry experience only; the original website remains underneath -->
 <div id="tn-entry" aria-label="TUNIGHT opening intro">
   <div class="tn-door tn-door-l"></div><div class="tn-door tn-door-r"></div>
-  <button class="tn-skip" id="tn-skip" type="button">SKIP INTRO</button>
   <section id="tn-entry-content" aria-label="Tunight intro">
     <div class="tn-stage">
       <svg id="tn-svg" viewBox="0 0 900 250" role="img" aria-label="TUNIGHT">
@@ -2444,10 +2443,10 @@ document.querySelectorAll("img").forEach(function(image){
   function later(fn,ms){timers.push(setTimeout(fn,ms))}
   function setLevel(p){$('water').setAttribute('transform','translate(0,'+(FROM+(TO-FROM)*p)+')');$('pct').textContent=Math.round(p*100)+'%';$('bar').style.width=(p*100)+'%'}
   function finish(){ $('tu').classList.add('tn-on');['tag','sub','act'].forEach(function(id,n){later(function(){$(id).classList.add('tn-show')},300+n*350)});later(function(){if($('enter'))$('enter').focus({preventScroll:true})},1500);}
-  function play(){if(finished)return;cancelAnimationFrame(raf);timers.forEach(clearTimeout);timers=[];var entry=$('entry');entry.classList.remove('tn-open','tn-hidden');$('entry-content').classList.remove('tn-gone');$('skip').classList.remove('tn-gone');$('tu').classList.remove('tn-on');['tag','sub','act'].forEach(function(id){$(id).classList.remove('tn-show')});layout();
+  function play(){if(finished)return;cancelAnimationFrame(raf);timers.forEach(clearTimeout);timers=[];var entry=$('entry');entry.classList.remove('tn-open','tn-hidden');$('entry-content').classList.remove('tn-gone');$('tu').classList.remove('tn-on');['tag','sub','act'].forEach(function(id){$(id).classList.remove('tn-show')});layout();
     if(reduce){setLevel(1);finish();return}setLevel(0);var dur=3600,t0=null;function step(ts){if(t0===null)t0=ts+500;var k=Math.max(0,Math.min((ts-t0)/dur,1)),e=1-Math.pow(1-k,2.2);setLevel(e);if(k<1)raf=requestAnimationFrame(step);else finish()}raf=requestAnimationFrame(step)}
-  function leave(){if(finished)return;finished=true;cancelAnimationFrame(raf);timers.forEach(clearTimeout);$('entry').classList.add('tn-open');$('skip').classList.add('tn-gone');root.classList.remove('tn-intro-lock');root.style.overflow='';setTimeout(function(){$('entry').classList.add('tn-hidden')},reduce?60:1800);}
-  $('enter').addEventListener('click',leave);$('skip').addEventListener('click',leave);
+  function leave(){if(finished)return;finished=true;cancelAnimationFrame(raf);timers.forEach(clearTimeout);$('entry').classList.add('tn-open');root.classList.remove('tn-intro-lock');root.style.overflow='';setTimeout(function(){$('entry').classList.add('tn-hidden')},reduce?60:1800);}
+  $('enter').addEventListener('click',leave);
   root.classList.add('tn-intro-lock');root.style.overflow='hidden';
   (document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(function(){if(!finished)play()});
   window.addEventListener('resize',function(){if(!finished)layout()});
