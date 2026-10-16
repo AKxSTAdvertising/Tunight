@@ -1384,6 +1384,27 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
 <body>
 
+<!-- TUNIGHT cinematic entry overlay: entry experience only; the original website remains underneath -->
+<div id="tn-entry" aria-label="TUNIGHT opening intro">
+  <div class="tn-door tn-door-l"></div><div class="tn-door tn-door-r"></div>
+  <button class="tn-skip" id="tn-skip" type="button">SKIP INTRO</button>
+  <section id="tn-entry-content" aria-label="Tunight intro">
+    <div class="tn-stage">
+      <svg id="tn-svg" viewBox="0 0 900 250" role="img" aria-label="TUNIGHT">
+        <defs><clipPath id="tn-clip"><text id="tn-tc" y="190" font-family="'Playfair Display',Georgia,serif" font-weight="700" font-size="170">TUNIGHT</text></clipPath></defs>
+        <text id="tn-to" class="tn-outline" y="190" font-family="'Playfair Display',Georgia,serif" font-weight="700" font-size="170">TUNIGHT</text>
+        <g clip-path="url(#tn-clip)"><g id="tn-water" transform="translate(0,270)"><path id="tn-w2" class="tn-wave tn-wave-b" fill="#8f1810"></path><path id="tn-w1" class="tn-wave" fill="#e5281d"></path></g></g>
+        <text id="tn-tu" y="190" font-family="'Playfair Display',Georgia,serif" font-weight="700" font-size="170">TU</text>
+      </svg>
+      <div class="tn-count"><span id="tn-pct">0%</span><i><b id="tn-bar"></b></i><span>POURING</span></div>
+      <p class="tn-tag tn-fade" id="tn-tag">Where the evening <em>begins.</em></p>
+      <p class="tn-sub tn-fade" id="tn-sub">Dinners, celebrations and late conversations.</p>
+      <div class="tn-act tn-fade" id="tn-act"><button class="tn-enter" id="tn-enter" type="button">OPEN THE DOORS</button></div>
+    </div>
+  </section>
+</div>
+
+
 <!-- HEADER -->
 
 <header class="header">
@@ -2411,5 +2432,27 @@ document.querySelectorAll("img").forEach(function(image){
 })();
 </script>
   <script src="global.js?v=20261017" defer></script>
+
+<script>
+(function(){
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var $=function(id){return document.getElementById('tn-'+id)}, root=document.body, raf=0, timers=[], finished=false;
+  var FROM=270, TO=45;
+  function wavePath(off){var d='M-300 0 q75 '+(-22-off)+' 150 0';for(var i=0;i<13;i++)d+=' t150 0';return d+' V 400 H -300 Z';}
+  $('w1').setAttribute('d',wavePath(0));$('w2').setAttribute('d',wavePath(8));
+  function layout(){var f=170,els=['tc','to','tu'].map($),w;els.forEach(function(e){e.setAttribute('font-size',f)});w=$('to').getComputedTextLength();if(w>840){f=Math.floor(f*840/w);els.forEach(function(e){e.setAttribute('font-size',f)});w=$('to').getComputedTextLength()}var x=(900-w)/2;els.forEach(function(e){e.setAttribute('x',x)});}
+  function later(fn,ms){timers.push(setTimeout(fn,ms))}
+  function setLevel(p){$('water').setAttribute('transform','translate(0,'+(FROM+(TO-FROM)*p)+')');$('pct').textContent=Math.round(p*100)+'%';$('bar').style.width=(p*100)+'%'}
+  function finish(){ $('tu').classList.add('tn-on');['tag','sub','act'].forEach(function(id,n){later(function(){$(id).classList.add('tn-show')},300+n*350)});later(function(){if($('enter'))$('enter').focus({preventScroll:true})},1500);}
+  function play(){if(finished)return;cancelAnimationFrame(raf);timers.forEach(clearTimeout);timers=[];var entry=$('entry');entry.classList.remove('tn-open','tn-hidden');$('content').classList.remove('tn-gone');$('skip').classList.remove('tn-gone');$('tu').classList.remove('tn-on');['tag','sub','act'].forEach(function(id){$(id).classList.remove('tn-show')});layout();
+    if(reduce){setLevel(1);finish();return}setLevel(0);var dur=3600,t0=null;function step(ts){if(t0===null)t0=ts+500;var k=Math.max(0,Math.min((ts-t0)/dur,1)),e=1-Math.pow(1-k,2.2);setLevel(e);if(k<1)raf=requestAnimationFrame(step);else finish()}raf=requestAnimationFrame(step)}
+  function leave(){if(finished)return;finished=true;cancelAnimationFrame(raf);timers.forEach(clearTimeout);$('entry').classList.add('tn-open');$('skip').classList.add('tn-gone');root.classList.remove('tn-intro-lock');root.style.overflow='';setTimeout(function(){$('entry').classList.add('tn-hidden')},reduce?60:1800);}
+  $('enter').addEventListener('click',leave);$('skip').addEventListener('click',leave);
+  root.classList.add('tn-intro-lock');root.style.overflow='hidden';
+  (document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(function(){if(!finished)play()});
+  window.addEventListener('resize',function(){if(!finished)layout()});
+})();
+</script>
+
 </body>
 </html>
