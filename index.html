@@ -2470,10 +2470,38 @@ document.querySelectorAll("img").forEach(function(image){
     ];
     return D;
   }
+  function dropToButton(){
+    var svg=$('svg'),dot=$('dx'),dy=$('dy'),button=$('enter');
+    if(!svg||!dot||!dy||!button||finished)return;
+    var rect=svg.getBoundingClientRect(),btn=button.getBoundingClientRect(),scale=(rect.width/900)||1;
+    var targetX=(btn.left+btn.width/2-rect.left)/scale;
+    var targetY=(btn.top+btn.height/2-rect.top)/scale;
+    var currentX=geo.x3,currentY=geo.rest;
+    if(reduce){leave();return}
+    var xAnim=dot.animate([
+      {transform:'translate('+currentX+'px,0px)'},
+      {transform:'translate('+targetX+'px,0px)',offset:.72,easing:'cubic-bezier(.2,.8,.3,1)'},
+      {transform:'translate('+targetX+'px,0px)'}
+    ],{duration:850,fill:'forwards'});
+    var yAnim=dy.animate([
+      {transform:'translate(0px,'+currentY+'px) scale(1,1)'},
+      {transform:'translate(0px,'+(targetY-24)+'px) scale(.85,1.2)',offset:.72,easing:'cubic-bezier(.35,0,.75,.4)'},
+      {transform:'translate(0px,'+targetY+'px) scale(1.3,.7)',offset:.88,easing:'ease-out'},
+      {transform:'translate(0px,'+(targetY-5)+'px) scale(.9,1.15)'},
+      {transform:'translate(0px,'+targetY+'px) scale(1,1)'}
+    ],{duration:850,fill:'forwards'});
+    Promise.all([xAnim.finished,yAnim.finished]).then(function(){
+      if(finished)return;
+      button.style.transform='scale(.96)';
+      button.style.boxShadow='0 0 28px rgba(229,40,29,.85)';
+      setTimeout(leave,180);
+    }).catch(function(){});
+  }
   function finish(){
     $('tu').classList.add('tn-on');var D=dropDot();
     ['tag','sub','act'].forEach(function(id,n){later(function(){$(id).classList.add('tn-show')},D+200+n*350)});
-    later(function(){if($('enter'))$('enter').focus({preventScroll:true})},D+1700);
+    // After the drop lands on the I, it falls onto OPEN THE DOORS and opens the site.
+    later(dropToButton,D+1450);
   }
   function play(){
     if(finished)return;
