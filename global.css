@@ -194,3 +194,7 @@ body.tn-intro-lock{overflow:hidden!important}
 body.tn-site-reveal::after{content:"";position:fixed;inset:0;z-index:99998;pointer-events:none;background:rgba(10,11,13,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);opacity:1;animation:tn-soft-reveal 4.2s cubic-bezier(.22,.61,.36,1) forwards}
 @keyframes tn-soft-reveal{0%{opacity:1;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}35%{opacity:.82}70%{opacity:.28;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}100%{opacity:0;backdrop-filter:blur(0);-webkit-backdrop-filter:blur(0)}}
 @media(prefers-reduced-motion:reduce){body.tn-site-reveal::after{animation-duration:.01s;backdrop-filter:none;-webkit-backdrop-filter:none}}
+
+/* --- Slightly lower the TUNIGHT intro logo and its supporting content --- */
+#tn-entry .tn-stage{transform:translateY(24px)}
+@media(max-height:620px){#tn-entry .tn-stage{transform:translateY(10px)}}
