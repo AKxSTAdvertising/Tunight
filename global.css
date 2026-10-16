@@ -176,3 +176,16 @@ body.tn-intro-lock{overflow:hidden!important}
 #tn-entry.tn-hidden{display:none}
 @media(max-width:600px){#tn-entry .tn-stage{width:100%}#tn-entry .tn-count{gap:9px}#tn-entry .tn-tag{font-size:clamp(1.3rem,5vw,1.8rem)}#tn-entry .tn-skip{right:10px;top:calc(env(safe-area-inset-top,0px) + 10px)}}
 @media(prefers-reduced-motion:reduce){#tn-entry *{transition-duration:.01s!important;animation:none!important}}
+
+/* --- Added opening-door light flare, glowing seam and rising embers --- */
+#tn-entry .tn-flare{position:absolute;left:50%;top:0;bottom:0;width:0;z-index:0;pointer-events:none;transform:translateX(-50%);opacity:0;background:radial-gradient(ellipse at center,rgba(255,120,60,.55) 0%,rgba(229,40,29,.35) 35%,rgba(229,40,29,0) 70%)}
+#tn-entry.tn-open .tn-flare{animation:tn-flare 2.4s ease-out .3s forwards}
+@keyframes tn-flare{0%{width:0;opacity:0}25%{opacity:1}100%{width:130vw;opacity:0}}
+#tn-entry .tn-seam{position:absolute;left:50%;top:0;bottom:0;width:2px;margin-left:-1px;z-index:3;pointer-events:none;background:#ff5a3c;box-shadow:0 0 24px 6px rgba(255,90,60,.7);opacity:0;transform:scaleY(0)}
+#tn-entry.tn-open .tn-seam{animation:tn-seam 1.9s ease-out .2s forwards}
+@keyframes tn-seam{0%{opacity:0;transform:scaleY(0)}20%{opacity:1;transform:scaleY(1)}70%{opacity:1}100%{opacity:0;transform:scaleY(1)}}
+#tn-entry .tn-embers{position:absolute;inset:0;z-index:3;pointer-events:none;overflow:hidden}
+#tn-entry .tn-ember{position:absolute;bottom:-12px;width:var(--s);height:var(--s);border-radius:50%;background:#ff7a3c;box-shadow:0 0 10px 2px rgba(255,110,50,.8);opacity:0;animation:tn-rise var(--d) ease-out var(--dl) forwards}
+@keyframes tn-rise{0%{opacity:0;transform:translate(0,0)}15%{opacity:1}100%{opacity:0;transform:translate(var(--x),-95vh)}}
+#tn-entry .tn-door{z-index:1}
+@media(prefers-reduced-motion:reduce){#tn-entry .tn-flare,#tn-entry .tn-seam,#tn-entry .tn-embers{display:none!important}}
