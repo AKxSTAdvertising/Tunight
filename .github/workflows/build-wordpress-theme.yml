@@ -1,0 +1,33 @@
+name: Build Tunight WordPress Theme
+on:
+  push:
+    branches:
+      - wordpress-theme-migration
+    paths:
+      - 'tunight-wp-theme/**'
+      - '.github/workflows/build-wordpress-theme.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  package-theme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout migration branch
+        uses: actions/checkout@v4
+      - name: PHP syntax check
+        run: |
+          find tunight-wp-theme -name '*.php' -print0 | xargs -0 -n1 php -l
+      - name: Package installable theme
+        run: |
+          test -f tunight-wp-theme/style.css
+          mkdir -p dist
+          cd tunight-wp-theme
+          zip -r ../dist/tunight-wordpress-theme.zip .
+      - name: Upload theme ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: tunight-wordpress-theme
+          path: dist/tunight-wordpress-theme.zip
+          if-no-files-found: error
+          retention-days: 14
