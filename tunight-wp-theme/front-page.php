@@ -1408,7 +1408,7 @@ button{
 
     <div class="hero-photo photo">
 
-        <img
+        <img onerror="this.style.display='none'"
             src="assets/images/hero.jpg"
             alt="TUNIGHT Terrace Restro and Banquet">
 
@@ -1550,7 +1550,7 @@ button{
 
             <div class="photo">
 
-                <img
+                <img onerror="this.style.display='none'"
                     src="assets/images/rooftop.jpg"
                     alt="TUNIGHT rooftop">
 
@@ -1585,7 +1585,7 @@ button{
 
             <div class="photo">
 
-                <img
+                <img onerror="this.style.display='none'"
                     src="assets/images/banquet.jpg"
                     alt="TUNIGHT banquet">
 
@@ -1628,7 +1628,7 @@ button{
 
         <div class="food-image photo">
 
-            <img
+            <img onerror="this.style.display='none'"
                 src="assets/images/food-01.jpg"
                 alt="TUNIGHT food">
 
@@ -1749,7 +1749,7 @@ button{
 
     <div class="banquet-photo photo">
 
-        <img
+        <img onerror="this.style.display='none'"
             src="assets/images/banquet-main.jpg"
             alt="TUNIGHT banquet hall">
 
@@ -1862,7 +1862,7 @@ button{
 
                 <div class="photo">
 
-                    <img
+                    <img onerror="this.style.display='none'"
                         src="assets/images/event-01.jpg"
                         alt="Birthday celebration">
 
@@ -1887,7 +1887,7 @@ button{
 
                 <div class="photo">
 
-                    <img
+                    <img onerror="this.style.display='none'"
                         src="assets/images/event-02.jpg"
                         alt="Corporate event">
 
@@ -1912,7 +1912,7 @@ button{
 
                 <div class="photo">
 
-                    <img
+                    <img onerror="this.style.display='none'"
                         src="assets/images/event-03.jpg"
                         alt="Family celebration">
 
@@ -1972,7 +1972,7 @@ button{
 
             <a href="<?php echo esc_url(home_url('/gallery/')); ?>" class="gallery-item tall photo">
 
-                <img
+                <img onerror="this.style.display='none'"
                     src="assets/images/gallery-01.jpg"
                     alt="TUNIGHT gallery">
 
@@ -1981,7 +1981,7 @@ button{
 
             <a href="<?php echo esc_url(home_url('/gallery/')); ?>" class="gallery-item photo">
 
-                <img
+                <img onerror="this.style.display='none'"
                     src="assets/images/gallery-02.jpg"
                     alt="TUNIGHT ambience">
 
@@ -1990,7 +1990,7 @@ button{
 
             <a href="<?php echo esc_url(home_url('/gallery/')); ?>" class="gallery-item photo">
 
-                <img
+                <img onerror="this.style.display='none'"
                     src="assets/images/gallery-03.jpg"
                     alt="TUNIGHT dining">
 
@@ -1999,7 +1999,7 @@ button{
 
             <a href="<?php echo esc_url(home_url('/gallery/')); ?>" class="gallery-item wide photo">
 
-                <img
+                <img onerror="this.style.display='none'"
                     src="assets/images/gallery-04.jpg"
                     alt="TUNIGHT celebration">
 
