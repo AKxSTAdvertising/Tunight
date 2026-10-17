@@ -1,0 +1,2553 @@
+<?php
+/**
+ * Events page — adapted from the original static site for WordPress.
+ * Requires a WordPress page with slug matching this template.
+ */
+?><!doctype html>
+<html <?php language_attributes(); ?>>
+<head>
+<meta charset="<?php bloginfo('charset'); ?>">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Experiences & Events — TUNIGHT</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="<?php echo esc_url(get_template_directory_uri() . '/assets/global.css'); ?>">
+<?php wp_head(); ?>
+<style>
+
+
+:root{
+    --green:#09271d;
+    --green-2:#103b2d;
+    --green-3:#174936;
+
+    --gold:#c7a766;
+    --gold-light:#dfc98f;
+
+    --cream:#f3eee3;
+    --cream-light:#faf8f2;
+
+    --white:#fff;
+    --black:#07100c;
+
+    --text:#17231e;
+    --muted:#707872;
+
+    --line:rgba(23,35,30,.14);
+
+    --container:1280px;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:var(--cream);
+    color:var(--text);
+    font-family:"DM Sans",sans-serif;
+    overflow-x:hidden;
+}
+
+body.no-scroll{
+    overflow:hidden;
+}
+
+img{
+    display:block;
+    width:100%;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+button{
+    font:inherit;
+}
+
+.container{
+    width:min(var(--container),90%);
+    margin:auto;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:100;
+    color:white;
+    border-bottom:1px solid rgba(255,255,255,.15);
+    transition:
+        background .45s ease,
+        backdrop-filter .45s ease,
+        box-shadow .45s ease;
+}
+
+.header:hover{
+    background:rgba(3,19,14,.12);
+    backdrop-filter:blur(8px);
+}
+
+.nav{
+    min-height:88px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:30px;
+}
+
+.logo{
+    font-family:"Playfair Display",serif;
+    font-size:31px;
+    letter-spacing:-1.5px;
+    white-space:nowrap;
+    transition:
+        transform .35s cubic-bezier(.16,1,.3,1),
+        text-shadow .35s ease;
+}
+
+.logo:hover{
+    transform:translateY(-2px);
+    text-shadow:0 8px 25px rgba(223,201,143,.22);
+}
+
+.logo span{
+    color:var(--gold-light);
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:28px;
+}
+
+.nav-links a{
+    position:relative;
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:.13em;
+    text-transform:uppercase;
+    color:#f7f6f0;
+    transition:
+        color .3s ease,
+        transform .3s ease;
+}
+
+.nav-links a:hover{
+    transform:translateY(-2px);
+}
+
+.nav-links a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-9px;
+    width:0;
+    height:1px;
+    background:var(--gold-light);
+    transition:.3s;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after{
+    width:100%;
+}
+
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.cart{
+    width:42px;
+    height:42px;
+    border:1px solid rgba(255,255,255,.28);
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    font-size:15px;
+    transition:
+        transform .35s cubic-bezier(.16,1,.3,1),
+        background .3s ease,
+        border-color .3s ease;
+}
+
+.cart:hover{
+    transform:translateY(-3px) rotate(-4deg);
+    background:rgba(255,255,255,.1);
+    border-color:var(--gold-light);
+}
+
+.cart:active{
+    transform:scale(.94);
+}
+
+.header-button{
+    padding:14px 21px;
+    background:var(--gold);
+    color:var(--green);
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:.13em;
+    text-transform:uppercase;
+    transition:
+        transform .3s cubic-bezier(.16,1,.3,1),
+        box-shadow .3s ease,
+        background .3s ease;
+}
+
+.header-button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 30px rgba(0,0,0,.18);
+    background:var(--gold-light);
+}
+
+.header-button:active{
+    transform:scale(.96);
+}
+
+.menu-button{
+    display:none;
+    width:42px;
+    height:42px;
+    border:1px solid rgba(255,255,255,.3);
+    background:transparent;
+    color:white;
+    cursor:pointer;
+}
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+.mobile-menu{
+    position:fixed;
+    inset:0;
+    z-index:1000;
+    background:var(--green);
+    color:white;
+    padding:24px;
+    transform:translateX(100%);
+    transition:
+        transform .55s cubic-bezier(.77,0,.18,1);
+}
+
+.mobile-menu.open{
+    transform:translateX(0);
+}
+
+.mobile-menu-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.mobile-close{
+    width:42px;
+    height:42px;
+    border:1px solid rgba(255,255,255,.25);
+    background:transparent;
+    color:white;
+    font-size:25px;
+    cursor:pointer;
+    transition:
+        transform .3s ease,
+        background .3s ease;
+}
+
+.mobile-close:hover{
+    transform:rotate(90deg);
+    background:rgba(255,255,255,.08);
+}
+
+.mobile-links{
+    margin-top:55px;
+}
+
+.mobile-links a{
+    display:block;
+    padding:17px 0;
+    border-bottom:1px solid rgba(255,255,255,.1);
+    font-family:"Playfair Display",serif;
+    font-size:34px;
+    transition:
+        padding-left .35s ease,
+        color .35s ease;
+}
+
+.mobile-links a:hover{
+    padding-left:12px;
+    color:var(--gold-light);
+}
+
+/* =========================
+   COMMON
+========================= */
+
+.eyebrow{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:var(--gold-light);
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:.23em;
+    text-transform:uppercase;
+}
+
+.eyebrow::before{
+    content:"";
+    width:44px;
+    height:1px;
+    background:var(--gold);
+    transition:
+        width .5s cubic-bezier(.16,1,.3,1);
+}
+
+section:hover .eyebrow::before{
+    width:58px;
+}
+
+.button{
+    min-height:53px;
+    padding:0 27px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    transition:
+        transform .35s cubic-bezier(.16,1,.3,1),
+        box-shadow .35s ease,
+        background .35s ease,
+        color .35s ease;
+}
+
+.button-gold{
+    background:var(--gold);
+    color:var(--green);
+}
+
+.button-gold:hover{
+    transform:translateY(-4px);
+    box-shadow:0 16px 35px rgba(0,0,0,.2);
+    background:var(--gold-light);
+}
+
+.button-outline{
+    border:1px solid rgba(255,255,255,.45);
+    color:white;
+}
+
+.button-outline:hover{
+    transform:translateY(-4px);
+    background:rgba(255,255,255,.08);
+    border-color:var(--gold-light);
+    color:var(--gold-light);
+}
+
+.button:active{
+    transform:scale(.96);
+}
+
+.photo{
+    position:relative;
+    overflow:hidden;
+    background:var(--green-2);
+}
+
+.photo::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        120deg,
+        transparent 30%,
+        rgba(255,255,255,.09) 50%,
+        transparent 70%
+    );
+    transform:translateX(-120%);
+    transition:transform 1s cubic-bezier(.16,1,.3,1);
+    pointer-events:none;
+}
+
+.photo:hover::after{
+    transform:translateX(120%);
+}
+
+.photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:
+        transform 1s cubic-bezier(.16,1,.3,1),
+        filter .8s ease;
+}
+
+.photo:hover img{
+    transform:scale(1.045);
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    min-height:88vh;
+    position:relative;
+    display:flex;
+    align-items:center;
+    color:white;
+    background:var(--green);
+    overflow:hidden;
+}
+
+.hero-photo{
+    position:absolute;
+    inset:0;
+}
+
+.hero-photo img{
+    object-position:center;
+    animation:heroScale 12s ease-out forwards;
+}
+
+@keyframes heroScale{
+    from{
+        transform:scale(1.08);
+    }
+
+    to{
+        transform:scale(1);
+    }
+}
+
+.hero-overlay{
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(2,17,12,.95),
+            rgba(2,17,12,.63) 52%,
+            rgba(2,17,12,.22)
+        ),
+        linear-gradient(
+            0deg,
+            rgba(2,17,12,.8),
+            transparent 65%
+        );
+    transition:opacity 1s ease;
+}
+
+.hero:hover .hero-overlay{
+    opacity:.94;
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    padding-top:80px;
+}
+
+.hero h1{
+    max-width:900px;
+    margin-top:27px;
+    font-family:"Playfair Display",serif;
+    font-size:clamp(68px,9vw,128px);
+    line-height:.84;
+    font-weight:400;
+    letter-spacing:-.075em;
+}
+
+.hero h1 em{
+    color:var(--gold-light);
+}
+
+.hero-text{
+    max-width:570px;
+    margin-top:34px;
+    color:#d0d8d3;
+    font-size:17px;
+    line-height:1.85;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:12px;
+    margin-top:36px;
+}
+
+/* =========================
+   INTRO
+========================= */
+
+.intro{
+    padding:145px 0;
+    background:var(--cream-light);
+    position:relative;
+}
+
+.intro::after{
+    content:"";
+    position:absolute;
+    width:400px;
+    height:400px;
+    border-radius:50%;
+    right:-200px;
+    top:20%;
+    background:rgba(199,167,102,.06);
+    filter:blur(80px);
+    pointer-events:none;
+    animation:tunightGlow 9s ease-in-out infinite alternate;
+}
+
+.intro-grid{
+    display:grid;
+    grid-template-columns:70px 1.1fr .9fr;
+    gap:65px;
+}
+
+.vertical{
+    writing-mode:vertical-rl;
+    transform:rotate(180deg);
+    color:var(--gold);
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+}
+
+.intro h2{
+    font-family:"Playfair Display",serif;
+    font-size:clamp(56px,6.4vw,88px);
+    line-height:.9;
+    font-weight:400;
+    letter-spacing:-.065em;
+}
+
+.intro h2 em{
+    color:var(--gold);
+}
+
+.intro-copy h3{
+    font-family:"Playfair Display",serif;
+    font-size:29px;
+    font-weight:400;
+    line-height:1.35;
+}
+
+.intro-copy p{
+    margin-top:21px;
+    color:var(--muted);
+    font-size:16px;
+    line-height:1.9;
+}
+
+/* =========================
+   EXPERIENCE FEATURE
+========================= */
+
+.feature{
+    padding:145px 0;
+    background:var(--green);
+    color:white;
+    position:relative;
+    overflow:hidden;
+}
+
+.feature::before{
+    content:"";
+    position:absolute;
+    width:500px;
+    height:500px;
+    border-radius:50%;
+    right:-200px;
+    top:-200px;
+    background:rgba(199,167,102,.06);
+    filter:blur(80px);
+    pointer-events:none;
+    animation:tunightGlow 8s ease-in-out infinite alternate;
+}
+
+.feature-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:50px;
+    margin-bottom:65px;
+}
+
+.feature-head h2{
+    margin-top:20px;
+    font-family:"Playfair Display",serif;
+    font-size:clamp(58px,6.5vw,90px);
+    line-height:.87;
+    font-weight:400;
+    letter-spacing:-.065em;
+}
+
+.feature-head h2 em{
+    color:var(--gold-light);
+}
+
+.feature-head p{
+    max-width:420px;
+    color:#aeb9b3;
+    font-size:15px;
+    line-height:1.85;
+}
+
+.feature-main{
+    display:grid;
+    grid-template-columns:1.25fr .75fr;
+    min-height:650px;
+    position:relative;
+    z-index:1;
+}
+
+.feature-image{
+    min-height:650px;
+}
+
+.feature-image img{
+    object-position:center;
+}
+
+.feature-image:hover img{
+    transform:scale(1.05);
+}
+
+.feature-content{
+    padding:60px 55px;
+    background:var(--green-2);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    transition:
+        transform .5s cubic-bezier(.16,1,.3,1),
+        box-shadow .5s ease;
+}
+
+.feature-content:hover{
+    transform:translateY(-5px);
+    box-shadow:0 25px 60px rgba(0,0,0,.15);
+}
+
+.feature-number{
+    color:var(--gold-light);
+    font-size:10px;
+    letter-spacing:.2em;
+}
+
+.feature-content h3{
+    margin-top:15px;
+    font-family:"Playfair Display",serif;
+    font-size:52px;
+    line-height:.95;
+    font-weight:400;
+}
+
+.feature-content p{
+    margin-top:25px;
+    color:#bac5bf;
+    font-size:15px;
+    line-height:1.9;
+}
+
+.feature-list{
+    margin-top:35px;
+    border-top:1px solid rgba(255,255,255,.12);
+}
+
+.feature-list div{
+    padding:14px 0;
+    border-bottom:1px solid rgba(255,255,255,.12);
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    color:#c7d0cb;
+    font-size:12px;
+    transition:
+        padding-left .3s ease,
+        color .3s ease;
+}
+
+.feature-list div:hover{
+    padding-left:8px;
+    color:white;
+}
+
+.feature-list span{
+    color:var(--gold-light);
+}
+
+/* =========================
+   EVENTS
+========================= */
+
+.events{
+    padding:150px 0;
+    background:var(--cream);
+    position:relative;
+}
+
+.events-heading{
+    max-width:760px;
+}
+
+.events-heading h2{
+    margin-top:20px;
+    font-family:"Playfair Display",serif;
+    font-size:clamp(58px,6.5vw,90px);
+    line-height:.88;
+    font-weight:400;
+    letter-spacing:-.065em;
+}
+
+.events-heading h2 em{
+    color:var(--gold);
+}
+
+.events-heading p{
+    max-width:570px;
+    margin-top:28px;
+    color:var(--muted);
+    font-size:16px;
+    line-height:1.9;
+}
+
+.event-list{
+    margin-top:75px;
+    border-top:1px solid var(--line);
+}
+
+.event-card{
+    display:grid;
+    grid-template-columns:100px 310px 1fr 130px;
+    align-items:center;
+    gap:35px;
+    padding:28px 0;
+    border-bottom:1px solid var(--line);
+    transition:
+        padding .4s cubic-bezier(.16,1,.3,1),
+        background .4s ease,
+        transform .4s cubic-bezier(.16,1,.3,1);
+}
+
+.event-card:hover{
+    padding-left:15px;
+    padding-right:15px;
+    background:rgba(255,255,255,.4);
+    transform:translateY(-2px);
+}
+
+.event-number{
+    color:var(--gold);
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.15em;
+}
+
+.event-image{
+    height:185px;
+}
+
+.event-image img{
+    object-position:center;
+}
+
+.event-card:hover .event-image img{
+    transform:scale(1.06);
+}
+
+.event-info h3{
+    font-family:"Playfair Display",serif;
+    font-size:34px;
+    font-weight:400;
+    transition:
+        color .3s ease,
+        transform .3s ease;
+}
+
+.event-card:hover .event-info h3{
+    color:var(--green);
+    transform:translateX(4px);
+}
+
+.event-info p{
+    max-width:500px;
+    margin-top:10px;
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.75;
+}
+
+.event-tag{
+    display:inline-block;
+    margin-top:16px;
+    color:var(--gold);
+    font-size:9px;
+    font-weight:700;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+}
+
+.event-arrow{
+    justify-self:end;
+    width:54px;
+    height:54px;
+    border:1px solid var(--line);
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    color:var(--gold);
+    transition:
+        transform .4s cubic-bezier(.16,1,.3,1),
+        background .3s ease,
+        color .3s ease,
+        border-color .3s ease;
+}
+
+.event-card:hover .event-arrow{
+    background:var(--green);
+    color:var(--gold-light);
+    border-color:var(--green);
+    transform:translateX(5px) rotate(-4deg);
+}
+
+/* =========================
+   BANQUET
+========================= */
+
+.banquet{
+    min-height:720px;
+    position:relative;
+    display:flex;
+    align-items:center;
+    color:white;
+    overflow:hidden;
+}
+
+.banquet-photo{
+    position:absolute;
+    inset:0;
+}
+
+.banquet-photo img{
+    object-position:center;
+}
+
+.banquet-overlay{
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(2,17,12,.96),
+            rgba(2,17,12,.57) 58%,
+            rgba(2,17,12,.15)
+        );
+}
+
+.banquet-content{
+    position:relative;
+    z-index:2;
+}
+
+.banquet-inner{
+    max-width:800px;
+}
+
+.banquet h2{
+    margin-top:20px;
+    font-family:"Playfair Display",serif;
+    font-size:clamp(62px,7.4vw,106px);
+    line-height:.84;
+    font-weight:400;
+    letter-spacing:-.07em;
+}
+
+.banquet h2 em{
+    color:var(--gold-light);
+}
+
+.banquet p{
+    max-width:570px;
+    margin-top:30px;
+    color:#c1cbc5;
+    font-size:17px;
+    line-height:1.85;
+}
+
+.stats{
+    display:flex;
+    gap:55px;
+    margin-top:43px;
+}
+
+.stat strong{
+    display:block;
+    color:var(--gold-light);
+    font-family:"Playfair Display",serif;
+    font-size:40px;
+    font-weight:400;
+}
+
+.stat span{
+    display:block;
+    margin-top:5px;
+    color:#a9b5ae;
+    font-size:10px;
+    letter-spacing:.13em;
+    text-transform:uppercase;
+}
+
+.stat{
+    transition:
+        transform .35s ease;
+}
+
+.stat:hover{
+    transform:translateY(-5px);
+}
+
+/* =========================
+   HOW IT WORKS
+========================= */
+
+.process{
+    padding:145px 0;
+    background:var(--cream-light);
+}
+
+.process-title{
+    text-align:center;
+    max-width:800px;
+    margin:auto;
+}
+
+.process-title .eyebrow{
+    justify-content:center;
+}
+
+.process-title h2{
+    margin-top:20px;
+    font-family:"Playfair Display",serif;
+    font-size:clamp(58px,6.5vw,90px);
+    line-height:.88;
+    font-weight:400;
+    letter-spacing:-.065em;
+}
+
+.process-title h2 em{
+    color:var(--gold);
+}
+
+.process-title p{
+    max-width:570px;
+    margin:28px auto 0;
+    color:var(--muted);
+    font-size:16px;
+    line-height:1.9;
+}
+
+.process-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+    margin-top:75px;
+}
+
+.process-card{
+    padding:45px 35px;
+    min-height:300px;
+    background:var(--cream);
+    border:1px solid var(--line);
+    position:relative;
+    transition:
+        transform .5s cubic-bezier(.16,1,.3,1),
+        box-shadow .5s ease,
+        background .4s ease;
+}
+
+.process-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 25px 60px rgba(7,16,12,.1);
+    background:#fffdf8;
+}
+
+.process-card-number{
+    color:var(--gold);
+    font-size:11px;
+    letter-spacing:.18em;
+}
+
+.process-card h3{
+    margin-top:55px;
+    font-family:"Playfair Display",serif;
+    font-size:32px;
+    font-weight:400;
+    transition:transform .35s ease;
+}
+
+.process-card:hover h3{
+    transform:translateX(5px);
+}
+
+.process-card p{
+    margin-top:15px;
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.8;
+}
+
+/* =========================
+   CTA
+========================= */
+
+.final{
+    padding:135px 0;
+    background:var(--green);
+    color:white;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+}
+
+.final::before{
+    content:"";
+    position:absolute;
+    width:500px;
+    height:500px;
+    border-radius:50%;
+    left:-220px;
+    bottom:-250px;
+    background:rgba(199,167,102,.06);
+    filter:blur(80px);
+    pointer-events:none;
+    animation:tunightGlow 8s ease-in-out infinite alternate;
+}
+
+.final .container{
+    position:relative;
+    z-index:2;
+}
+
+.final .eyebrow{
+    justify-content:center;
+}
+
+.final h2{
+    max-width:900px;
+    margin:25px auto 0;
+    font-family:"Playfair Display",serif;
+    font-size:clamp(65px,8vw,112px);
+    line-height:.84;
+    font-weight:400;
+    letter-spacing:-.07em;
+}
+
+.final h2 em{
+    color:var(--gold-light);
+}
+
+.final p{
+    max-width:530px;
+    margin:30px auto 0;
+    color:#aeb9b2;
+    font-size:16px;
+    line-height:1.8;
+}
+
+.final-buttons{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    margin-top:35px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+    padding:80px 0 25px;
+    background:#03130e;
+    color:white;
+}
+
+.footer-grid{
+    display:grid;
+    grid-template-columns:1.5fr .7fr .7fr .9fr;
+    gap:60px;
+}
+
+.footer-logo{
+    font-family:"Playfair Display",serif;
+    font-size:37px;
+    transition:transform .35s ease;
+}
+
+.footer-logo:hover{
+    transform:translateY(-3px);
+}
+
+.footer-logo span{
+    color:var(--gold);
+}
+
+.footer-description{
+    max-width:360px;
+    margin-top:18px;
+    color:#7d8a83;
+    font-size:14px;
+    line-height:1.8;
+}
+
+.footer h4{
+    margin-bottom:20px;
+    color:#d7d0c1;
+    font-size:10px;
+    letter-spacing:.17em;
+    text-transform:uppercase;
+}
+
+.footer-links{
+    display:grid;
+    gap:12px;
+}
+
+.footer-links a{
+    color:#84918b;
+    font-size:13px;
+    transition:
+        color .3s ease,
+        transform .3s ease;
+}
+
+.footer-links a:hover{
+    color:var(--gold-light);
+    transform:translateX(4px);
+}
+
+.footer-bottom{
+    display:flex;
+    justify-content:space-between;
+    margin-top:60px;
+    padding-top:22px;
+    border-top:1px solid rgba(255,255,255,.1);
+    color:#5f6d66;
+    font-size:11px;
+}
+
+/* =========================
+   UNIVERSAL MOTION
+========================= */
+
+@keyframes tunightGlow{
+
+    0%{
+        transform:translate3d(0,0,0) scale(1);
+        opacity:.4;
+    }
+
+    100%{
+        transform:translate3d(-30px,25px,0) scale(1.15);
+        opacity:.8;
+    }
+
+}
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+.reveal-ready{
+    opacity:0;
+    transform:translateY(35px);
+    transition:
+        opacity .8s ease,
+        transform .9s cubic-bezier(.16,1,.3,1);
+}
+
+.reveal-ready.revealed{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:1100px){
+
+    .nav-links{
+        gap:17px;
+    }
+
+    .nav-links a{
+        font-size:8px;
+    }
+
+    .intro-grid{
+        grid-template-columns:45px 1fr 1fr;
+        gap:35px;
+    }
+
+    .feature-main{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .event-card{
+        grid-template-columns:60px 250px 1fr 80px;
+        gap:25px;
+    }
+
+}
+
+@media(max-width:850px){
+
+    .nav-links,
+    .header-button{
+        display:none;
+    }
+
+    .menu-button{
+        display:block;
+    }
+
+    .intro-grid{
+        grid-template-columns:1fr;
+    }
+
+    .vertical{
+        writing-mode:initial;
+        transform:none;
+    }
+
+    .feature-main{
+        grid-template-columns:1fr;
+    }
+
+    .feature-image{
+        min-height:500px;
+    }
+
+    .event-card{
+        grid-template-columns:60px 230px 1fr 60px;
+    }
+
+    .process-grid{
+        grid-template-columns:1fr;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .container{
+        width:calc(100% - 40px);
+    }
+
+    .nav{
+        min-height:76px;
+    }
+
+    .logo{
+        font-size:28px;
+    }
+
+    .hero{
+        min-height:720px;
+    }
+
+    .hero-content{
+        padding-top:45px;
+    }
+
+    .hero h1{
+        font-size:62px;
+    }
+
+    .hero-text{
+        font-size:15px;
+    }
+
+    .hero-buttons{
+        flex-wrap:wrap;
+    }
+
+    .intro,
+    .feature,
+    .events,
+    .process,
+    .final{
+        padding:90px 0;
+    }
+
+    .feature-head{
+        display:block;
+    }
+
+    .feature-head p{
+        margin-top:25px;
+    }
+
+    .feature-image{
+        min-height:420px;
+    }
+
+    .feature-content{
+        padding:40px 28px;
+    }
+
+    .feature-content h3{
+        font-size:42px;
+    }
+
+    .event-list{
+        margin-top:50px;
+    }
+
+    .event-card{
+        grid-template-columns:45px 1fr;
+        gap:18px;
+        padding:25px 0;
+    }
+
+    .event-image{
+        grid-column:2;
+        height:240px;
+        order:2;
+    }
+
+    .event-info{
+        grid-column:2;
+        order:3;
+    }
+
+    .event-number{
+        grid-column:1;
+        grid-row:1 / span 3;
+        align-self:start;
+        padding-top:4px;
+    }
+
+    .event-arrow{
+        display:none;
+    }
+
+    .banquet{
+        min-height:650px;
+    }
+
+    .stats{
+        gap:25px;
+        flex-wrap:wrap;
+    }
+
+    .stat strong{
+        font-size:32px;
+    }
+
+    .process-card{
+        min-height:260px;
+    }
+
+    .final-buttons{
+        flex-wrap:wrap;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr;
+        gap:35px;
+    }
+
+    .footer-bottom{
+        display:block;
+        line-height:2;
+    }
+
+}
+
+/* =========================
+   REDUCED MOTION
+========================= */
+
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+        animation:none !important;
+        transition:none !important;
+        scroll-behavior:auto !important;
+    }
+
+}
+
+
+
+/* TUNIGHT CINEMATIC REDESIGN — inspired by the reference's atmosphere, not its temple content */
+@import url('https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap');
+:root{
+ --green:#07100d;--green-2:#0b1c16;--green-3:#123328;
+ --gold:#e0231c;--gold-light:#ff6254;
+ --cream:#e9e5dc;--cream-light:#f3f0e9;--white:#f5f4ef;--black:#050806;
+ --text:#17211c;--muted:#858b85;--line:rgba(233,229,220,.14);
+ --tn-gold:#e0231c;--tn-gold-light:#ff6254;--tn-green:#07100d;--tn-green-dark:#050806;--tn-cream:#e9e5dc;
+ --container:1380px;
+}
+html{scroll-behavior:smooth;scroll-padding-top:92px}
+body{font-family:'Onest','DM Sans',sans-serif;background:var(--green);color:var(--cream);overflow-x:hidden}
+::selection{background:#e0231c;color:white}
+.header{position:fixed!important;top:0;left:0;right:0;width:100%;z-index:1000;background:rgba(5,8,6,.64);border-bottom:1px solid rgba(255,255,255,.11);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);transition:background .35s,border-color .35s}
+.nav{min-height:78px}
+.logo{font-family:'Onest',sans-serif;font-size:25px;font-weight:700;letter-spacing:-1.5px}
+.logo span{color:#ff6254}
+.nav-links{gap:clamp(14px,2vw,30px)}
+.nav-links a,.header-button,.button,.eyebrow,.hero-bottom-inner,.vertical{font-family:'DM Mono',monospace;letter-spacing:.08em}
+.nav-links a{font-size:10px}
+.header-button,.button-gold{background:#e0231c!important;color:#fff!important;transition:transform .35s cubic-bezier(.22,1,.36,1),background .3s}
+.header-button:hover,.button-gold:hover{background:#ff4035!important;transform:translateY(-3px)}
+.cart{border-radius:0;border-color:rgba(255,255,255,.22)}
+.menu-button{border-radius:0}
+.mobile-menu{background:#070d0a!important}
+.hero,.menu-hero,.story-hero{background:#050806;color:#f5f4ef;isolation:isolate}
+.hero{min-height:100svh;padding-top:76px}
+.hero-photo img{filter:saturate(.72) contrast(1.08);animation:tnHeroReveal 1.5s cubic-bezier(.16,1,.3,1) both,heroScale 18s ease-out forwards}
+.hero-overlay{background:linear-gradient(90deg,rgba(3,8,6,.94) 0%,rgba(3,8,6,.62) 48%,rgba(3,8,6,.1) 100%),linear-gradient(0deg,rgba(3,8,6,.88),transparent 60%)}
+.hero-content{padding-top:100px}
+.hero h1,.menu-hero h1,.story-hero h1{font-family:'Onest',sans-serif;font-size:clamp(58px,10vw,150px);line-height:.88;letter-spacing:-.085em;font-weight:500;max-width:1100px}
+.hero h1 em,.menu-hero h1 em,.story-hero h1 em{font-family:'Playfair Display',serif;font-weight:400;color:#ff6254}
+.hero-text{max-width:480px;color:rgba(245,244,239,.72);font-size:15px;line-height:1.9}
+.eyebrow{color:#ff6254;font-size:10px;letter-spacing:.17em}
+.eyebrow::before{background:#e0231c}
+.button{min-height:54px;border-radius:0;padding:0 26px}
+.button-outline{border-color:rgba(245,244,239,.38);transition:background .3s,border-color .3s}
+.button-outline:hover{background:rgba(255,255,255,.08);border-color:#fff}
+.hero-bottom{bottom:26px}
+.hero-bottom-inner{font-size:9px;color:rgba(245,244,239,.58)}
+.scroll span{background:#e0231c}
+.intro,.experience,.food,.banquet,.occasions,.gallery,.testimonial,.final,
+.feature,.events,.process,.story-intro,.story-image-section,.philosophy,.story-experience,.story-quote,.story-banquet,.values,
+.menu-category,.menu-feature{background:#e9e5dc;color:#17211c}
+.intro,.experience,.food,.banquet,.occasions,.gallery,.testimonial,.final,.feature,.events,.process,.story-intro,.story-image-section,.philosophy,.story-experience,.story-quote,.story-banquet,.values,.menu-category,.menu-feature{position:relative}
+.intro,.feature,.story-intro,.philosophy,.story-experience,.story-quote,.values{padding-top:clamp(85px,11vw,155px);padding-bottom:clamp(85px,11vw,155px)}
+.intro h2,.experience h2,.food h2,.banquet h2,.occasions h2,.gallery h2,.testimonial h2,.final h2,
+.feature h2,.events h2,.process h2,.story-intro h2,.philosophy h2,.story-experience h2,.story-banquet h2,.values h2,
+.menu-category h2,.menu-feature h2{font-family:'Onest',sans-serif;font-weight:500;letter-spacing:-.065em;line-height:.98;font-size:clamp(38px,6.5vw,84px)}
+.vertical{color:#e0231c}
+section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
+.photo{background:linear-gradient(135deg,#1a3329,#070d0a)}
+.photo::before{color:rgba(255,255,255,.12);font-family:'Onest',sans-serif;letter-spacing:.15em}
+.photo img{transition:transform 1.1s cubic-bezier(.16,1,.3,1),filter .7s;filter:saturate(.82)}
+.photo:hover img,.gallery-item:hover img,.experience-card:hover img,.occasion:hover img{transform:scale(1.045);filter:saturate(1)}
+.experience-card,.occasion,.gallery-item,.menu-card,.food-card,.product-card{border-radius:0!important;overflow:hidden}
+.experience-card,.occasion,.gallery-item{transition:transform .6s cubic-bezier(.16,1,.3,1),border-color .3s}
+.experience-card:hover,.occasion:hover{transform:translateY(-5px)}
+.testimonial{background:#0b1711!important;color:#f5f4ef!important}
+.testimonial h2,.testimonial p,.testimonial blockquote{color:#f5f4ef}
+.final{background:#0b1711!important;color:#f5f4ef!important}
+.final h2{color:#f5f4ef}
+.footer{background:#050806!important;color:#f5f4ef!important;border-top:1px solid rgba(255,255,255,.1)}
+.footer a{transition:color .25s}
+.footer a:hover{color:#ff6254}
+.mobile-links a{font-family:'Onest',sans-serif;font-weight:400;letter-spacing:-.04em}
+.mobile-links a:hover{color:#ff6254}
+.menu-hero,.story-hero{min-height:78vh;padding-top:100px}
+.menu-hero h1,.story-hero h1{margin-top:24px}
+.menu-category,.menu-feature{padding-top:clamp(65px,8vw,120px);padding-bottom:clamp(65px,8vw,120px)}
+.menu-category:nth-of-type(even){background:#f3f0e9}
+.menu-item,.menu-card{border-color:rgba(23,33,28,.14)!important}
+.menu-item:hover{border-color:#e0231c!important}
+.menu-feature{background:#0b1711!important;color:#f5f4ef!important}
+.menu-feature h2,.menu-feature p{color:#f5f4ef}
+.story-quote{background:#0b1711!important;color:#f5f4ef!important}
+.story-quote *{color:#f5f4ef}
+.reveal-ready [data-reveal]{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+.reveal-ready [data-reveal].is-visible{opacity:1;transform:translateY(0)}
+.tn-progress{position:fixed;top:0;left:0;height:2px;width:0;z-index:2000;background:#e0231c;pointer-events:none}
+.tn-grain{position:fixed;inset:0;z-index:900;pointer-events:none;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.65'/%3E%3C/svg%3E")}
+@keyframes tnHeroReveal{from{clip-path:inset(0 0 18% 0);opacity:.4}to{clip-path:inset(0);opacity:1}}
+@media(max-width:900px){.nav{min-height:70px}.nav-links{display:none}.menu-button{display:block}.hero{min-height:92svh}.hero h1,.menu-hero h1,.story-hero h1{font-size:clamp(55px,13vw,100px)}.hero-overlay{background:linear-gradient(90deg,rgba(3,8,6,.82),rgba(3,8,6,.35)),linear-gradient(0deg,rgba(3,8,6,.9),transparent 70%)}.hero-bottom-inner{gap:16px}.intro-grid{gap:30px}}
+@media(max-width:600px){.container{width:88%}.hero-content{padding-top:90px}.hero h1{font-size:clamp(52px,15vw,82px)}.hero-text{font-size:14px;margin-top:25px}.hero-buttons{flex-wrap:wrap;margin-top:28px}.button{padding:0 18px;min-height:49px}.hero-bottom{bottom:17px}.hero-bottom-inner{font-size:8px}.intro-grid{grid-template-columns:1fr;gap:24px}.vertical{writing-mode:initial;transform:none}.menu-hero,.story-hero{min-height:72svh}.header-button{padding:12px 13px}.logo{font-size:22px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hero-photo img{animation:none!important}.reveal-ready [data-reveal]{opacity:1;transform:none;transition:none}}
+
+</style>
+</head>
+<body <?php body_class(); ?>>
+<?php wp_body_open(); ?>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+    <div class="container nav">
+
+        <a href="<?php echo esc_url(home_url('/')); ?>" class="logo">
+            TU<span>NIGHT</span>
+        </a>
+
+        <nav class="nav-links">
+
+            <a href="<?php echo esc_url(home_url('/')); ?>">Home</a>
+
+            <a href="our-story.html">Our Story</a>
+
+            <a href="<?php echo esc_url(home_url('/menu/')); ?>">Menu</a>
+
+            <a href="<?php echo esc_url(home_url('/events/')); ?>" class="active">Experiences</a>
+
+            <a href="<?php echo esc_url(home_url('/gallery/')); ?>">Gallery</a>
+
+            <a href="<?php echo esc_url(home_url('/offers/')); ?>">Offers</a>
+
+            <a href="<?php echo esc_url(home_url('/contact/')); ?>">Contact</a>
+
+        </nav>
+
+        <div class="nav-right">
+
+            <a href="<?php echo esc_url(home_url('/cart/')); ?>" class="cart">
+                🛒
+            </a>
+
+            <a href="<?php echo esc_url(home_url('/booking/')); ?>" class="header-button">
+                Reserve
+            </a>
+
+            <button class="menu-button" id="menuOpen">
+                ☰
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     MOBILE MENU
+========================= -->
+
+<div class="mobile-menu" id="mobileMenu">
+
+    <div class="mobile-menu-top">
+
+        <div class="logo">
+            TU<span>NIGHT</span>
+        </div>
+
+        <button class="mobile-close" id="menuClose">
+            ×
+        </button>
+
+    </div>
+
+    <nav class="mobile-links">
+
+        <a href="<?php echo esc_url(home_url('/')); ?>">Home</a>
+
+        <a href="our-story.html">Our Story</a>
+
+        <a href="<?php echo esc_url(home_url('/menu/')); ?>">Menu</a>
+
+        <a href="<?php echo esc_url(home_url('/events/')); ?>">Experiences</a>
+
+        <a href="<?php echo esc_url(home_url('/gallery/')); ?>">Gallery</a>
+
+        <a href="<?php echo esc_url(home_url('/offers/')); ?>">Offers</a>
+
+        <a href="<?php echo esc_url(home_url('/contact/')); ?>">Contact</a>
+
+    </nav>
+
+</div>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <div class="hero-photo photo">
+
+        <img
+            src="assets/images/events-hero.jpg"
+            alt="TUNIGHT experiences and celebrations">
+
+    </div>
+
+    <div class="hero-overlay"></div>
+
+    <div class="container hero-content">
+
+        <div class="eyebrow">
+            Experiences · Celebrations · Events
+        </div>
+
+        <h1>
+            Every occasion<br>
+            deserves a <em>night.</em>
+        </h1>
+
+        <p class="hero-text">
+            From rooftop dinners to birthdays, corporate gatherings
+            and unforgettable celebrations — make your next occasion
+            a TUNIGHT experience.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="<?php echo esc_url(home_url('/booking/')); ?>" class="button button-gold">
+                Plan Your Event
+            </a>
+
+            <a href="#experiences" class="button button-outline">
+                Explore Experiences
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     INTRO
+========================= -->
+
+<section class="intro">
+
+    <div class="container intro-grid">
+
+        <div class="vertical">
+            01 — Experiences
+        </div>
+
+        <div>
+
+            <h2>
+                Come for the<br>
+                occasion.<br>
+                Stay for the <em>night.</em>
+            </h2>
+
+        </div>
+
+        <div class="intro-copy">
+
+            <h3>
+                One destination for dinners, celebrations and everything in between.
+            </h3>
+
+            <p>
+                Whether it's a quiet dinner with someone special or
+                a room full of people celebrating together, TUNIGHT
+                gives every occasion its own atmosphere.
+            </p>
+
+            <p>
+                Tell us what you're planning and we'll help you
+                create an evening worth remembering.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FEATURE EXPERIENCE
+========================= -->
+
+<section class="feature" id="experiences">
+
+    <div class="container">
+
+        <div class="feature-head">
+
+            <div>
+
+                <div class="eyebrow">
+                    02 — Signature Experience
+                </div>
+
+                <h2>
+                    Start with<br>
+                    the <em>rooftop.</em>
+                </h2>
+
+            </div>
+
+            <p>
+                Open-air dining, warm lights, good food and the city
+                around you. Our rooftop is made for relaxed evenings
+                and conversations that go on a little longer.
+            </p>
+
+        </div>
+
+        <div class="feature-main">
+
+            <div class="feature-image photo">
+
+                <img
+                    src="assets/images/rooftop.jpg"
+                    alt="TUNIGHT rooftop dining">
+
+            </div>
+
+            <div class="feature-content">
+
+                <div class="feature-number">
+                    01 / ROOFTOP DINING
+                </div>
+
+                <h3>
+                    Dinner<br>
+                    under the<br>
+                    <em>stars.</em>
+                </h3>
+
+                <p>
+                    A relaxed setting for date nights, family dinners,
+                    friends and anyone looking to enjoy good food
+                    without rushing the evening.
+                </p>
+
+                <div class="feature-list">
+
+                    <div>
+                        <span>01</span>
+                        Open-air rooftop
+                    </div>
+
+                    <div>
+                        <span>02</span>
+                        Vegetarian dining
+                    </div>
+
+                    <div>
+                        <span>03</span>
+                        Evening ambience
+                    </div>
+
+                    <div>
+                        <span>04</span>
+                        Group seating
+                    </div>
+
+                </div>
+
+                <a
+                    href="<?php echo esc_url(home_url('/booking/')); ?>"
+                    class="button button-gold"
+                    style="margin-top:30px;"
+                >
+                    Reserve A Table
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     EVENTS
+========================= -->
+
+<section class="events">
+
+    <div class="container">
+
+        <div class="events-heading">
+
+            <div class="eyebrow">
+                03 — Celebrations
+            </div>
+
+            <h2>
+                Your moments.<br>
+                Our <em>space.</em>
+            </h2>
+
+            <p>
+                From intimate gatherings to larger celebrations,
+                choose the experience that fits your occasion.
+            </p>
+
+        </div>
+
+
+        <div class="event-list">
+
+
+            <a href="booking.html?event=birthday" class="event-card">
+
+                <div class="event-number">
+                    01
+                </div>
+
+                <div class="event-image photo">
+
+                    <img
+                        src="assets/images/event-01.jpg"
+                        alt="Birthday celebration at TUNIGHT">
+
+                </div>
+
+                <div class="event-info">
+
+                    <h3>
+                        Birthday Celebrations
+                    </h3>
+
+                    <p>
+                        Make birthdays more than just another dinner.
+                        Bring your people together for food, music,
+                        décor and a night worth remembering.
+                    </p>
+
+                    <span class="event-tag">
+                        Birthdays
+                    </span>
+
+                </div>
+
+                <div class="event-arrow">
+                    →
+                </div>
+
+            </a>
+
+
+            <a href="booking.html?event=corporate" class="event-card">
+
+                <div class="event-number">
+                    02
+                </div>
+
+                <div class="event-image photo">
+
+                    <img
+                        src="assets/images/event-02.jpg"
+                        alt="Corporate event at TUNIGHT">
+
+                </div>
+
+                <div class="event-info">
+
+                    <h3>
+                        Corporate Nights
+                    </h3>
+
+                    <p>
+                        Team dinners, office parties, client evenings
+                        and corporate celebrations in a comfortable
+                        and presentable setting.
+                    </p>
+
+                    <span class="event-tag">
+                        Corporate
+                    </span>
+
+                </div>
+
+                <div class="event-arrow">
+                    →
+                </div>
+
+            </a>
+
+
+            <a href="booking.html?event=family" class="event-card">
+
+                <div class="event-number">
+                    03
+                </div>
+
+                <div class="event-image photo">
+
+                    <img
+                        src="assets/images/event-03.jpg"
+                        alt="Family celebration at TUNIGHT">
+
+                </div>
+
+                <div class="event-info">
+
+                    <h3>
+                        Family Celebrations
+                    </h3>
+
+                    <p>
+                        Gather the whole family around one table
+                        and enjoy an evening designed around food,
+                        conversations and togetherness.
+                    </p>
+
+                    <span class="event-tag">
+                        Family
+                    </span>
+
+                </div>
+
+                <div class="event-arrow">
+                    →
+                </div>
+
+            </a>
+
+
+            <a href="booking.html?event=anniversary" class="event-card">
+
+                <div class="event-number">
+                    04
+                </div>
+
+                <div class="event-image photo">
+
+                    <img
+                        src="assets/images/event-04.jpg"
+                        alt="Anniversary celebration at TUNIGHT">
+
+                </div>
+
+                <div class="event-info">
+
+                    <h3>
+                        Anniversaries & Special Moments
+                    </h3>
+
+                    <p>
+                        Celebrate milestones, anniversaries and
+                        personal moments in an atmosphere made
+                        for slowing down and enjoying the evening.
+                    </p>
+
+                    <span class="event-tag">
+                        Special Moments
+                    </span>
+
+                </div>
+
+                <div class="event-arrow">
+                    →
+                </div>
+
+            </a>
+
+
+            <a href="booking.html?event=party" class="event-card">
+
+                <div class="event-number">
+                    05
+                </div>
+
+                <div class="event-image photo">
+
+                    <img
+                        src="assets/images/event-05.jpg"
+                        alt="Party at TUNIGHT">
+
+                </div>
+
+                <div class="event-info">
+
+                    <h3>
+                        Private Parties
+                    </h3>
+
+                    <p>
+                        Get your friends together, turn up the music
+                        and make the night yours with a private
+                        celebration at TUNIGHT.
+                    </p>
+
+                    <span class="event-tag">
+                        Parties
+                    </span>
+
+                </div>
+
+                <div class="event-arrow">
+                    →
+                </div>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     BANQUET
+========================= -->
+
+<section class="banquet">
+
+    <div class="banquet-photo photo">
+
+        <img
+            src="assets/images/banquet-main.jpg"
+            alt="TUNIGHT banquet hall">
+
+    </div>
+
+    <div class="banquet-overlay"></div>
+
+    <div class="container banquet-content">
+
+        <div class="banquet-inner">
+
+            <div class="eyebrow">
+                04 — Banquets & Private Events
+            </div>
+
+            <h2>
+                Bring everyone<br>
+                to the <em>table.</em>
+            </h2>
+
+            <p>
+                Planning something bigger? Our banquet experience
+                gives you the space and flexibility to bring your
+                guests together for an evening that feels completely yours.
+            </p>
+
+            <div class="stats">
+
+                <div class="stat">
+
+                    <strong>
+                        10–150
+                    </strong>
+
+                    <span>
+                        Guests
+                    </span>
+
+                </div>
+
+                <div class="stat">
+
+                    <strong>
+                        DJ
+                    </strong>
+
+                    <span>
+                        Available
+                    </span>
+
+                </div>
+
+                <div class="stat">
+
+                    <strong>
+                        Catering
+                    </strong>
+
+                    <span>
+                        Available
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="hero-buttons">
+
+                <a href="<?php echo esc_url(home_url('/booking/')); ?>" class="button button-gold">
+                    Enquire For Your Event
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PROCESS
+========================= -->
+
+<section class="process">
+
+    <div class="container">
+
+        <div class="process-title">
+
+            <div class="eyebrow">
+                05 — Make It Yours
+            </div>
+
+            <h2>
+                Planning your<br>
+                <em>night</em> is simple.
+            </h2>
+
+            <p>
+                Tell us what you're celebrating, how many people
+                you're bringing and what you have in mind.
+                We'll take it from there.
+            </p>
+
+        </div>
+
+
+        <div class="process-grid">
+
+            <div class="process-card">
+
+                <div class="process-card-number">
+                    01 / TELL US
+                </div>
+
+                <h3>
+                    Share your plan.
+                </h3>
+
+                <p>
+                    Choose your occasion, date, guest count
+                    and preferred experience.
+                </p>
+
+            </div>
+
+
+            <div class="process-card">
+
+                <div class="process-card-number">
+                    02 / PLAN
+                </div>
+
+                <h3>
+                    We shape the evening.
+                </h3>
+
+                <p>
+                    Our team helps you with seating, food,
+                    décor, music and other requirements.
+                </p>
+
+            </div>
+
+
+            <div class="process-card">
+
+                <div class="process-card-number">
+                    03 / CELEBRATE
+                </div>
+
+                <h3>
+                    You enjoy the night.
+                </h3>
+
+                <p>
+                    Arrive, settle in and let TUNIGHT take care
+                    of the evening.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FINAL CTA
+========================= -->
+
+<section class="final">
+
+    <div class="container">
+
+        <div class="eyebrow">
+            06 — Your Occasion Starts Here
+        </div>
+
+        <h2>
+            Let's make it<br>
+            a <em>TUNIGHT.</em>
+        </h2>
+
+        <p>
+            Tell us what you're planning and we'll help you
+            create an evening your guests will remember.
+        </p>
+
+        <div class="final-buttons">
+
+            <a href="<?php echo esc_url(home_url('/booking/')); ?>" class="button button-gold">
+                Plan Your Event
+            </a>
+
+            <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="button button-outline">
+                Contact Us
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="footer">
+
+    <div class="container footer-grid">
+
+        <div>
+
+            <div class="footer-logo">
+                TU<span>NIGHT</span>
+            </div>
+
+            <p class="footer-description">
+                Terrace dining, food, celebrations and banquet
+                experiences in Raj Nagar, Ghaziabad.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h4>
+                Explore
+            </h4>
+
+            <div class="footer-links">
+
+                <a href="our-story.html">
+                    Our Story
+                </a>
+
+                <a href="<?php echo esc_url(home_url('/menu/')); ?>">
+                    Menu
+                </a>
+
+                <a href="<?php echo esc_url(home_url('/events/')); ?>">
+                    Experiences
+                </a>
+
+                <a href="<?php echo esc_url(home_url('/gallery/')); ?>">
+                    Gallery
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div>
+
+            <h4>
+                Discover
+            </h4>
+
+            <div class="footer-links">
+
+                <a href="<?php echo esc_url(home_url('/offers/')); ?>">
+                    Offers
+                </a>
+
+                <a href="<?php echo esc_url(home_url('/cart/')); ?>">
+                    Order Online
+                </a>
+
+                <a href="<?php echo esc_url(home_url('/booking/')); ?>">
+                    Reservations
+                </a>
+
+                <a href="<?php echo esc_url(home_url('/contact/')); ?>">
+                    Contact
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div>
+
+            <h4>
+                Visit
+            </h4>
+
+            <div class="footer-links">
+
+                <a href="<?php echo esc_url(home_url('/contact/')); ?>">
+                    Raj Nagar, Ghaziabad
+                </a>
+
+                <a href="<?php echo esc_url(home_url('/contact/')); ?>">
+                    Get Directions
+                </a>
+
+                <a href="<?php echo esc_url(home_url('/contact/')); ?>">
+                    Contact TUNIGHT
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="container footer-bottom">
+
+        <div>
+            © 2026 TUNIGHT. All rights reserved.
+        </div>
+
+        <div>
+            Raj Nagar · Ghaziabad
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+const menuOpen = document.getElementById("menuOpen");
+const menuClose = document.getElementById("menuClose");
+const mobileMenu = document.getElementById("mobileMenu");
+
+
+/* MOBILE MENU */
+
+menuOpen.addEventListener("click", function(){
+
+    mobileMenu.classList.add("open");
+    document.body.classList.add("no-scroll");
+
+});
+
+
+menuClose.addEventListener("click", function(){
+
+    mobileMenu.classList.remove("open");
+    document.body.classList.remove("no-scroll");
+
+});
+
+
+document.querySelectorAll(".mobile-links a").forEach(function(link){
+
+    link.addEventListener("click", function(){
+
+        mobileMenu.classList.remove("open");
+        document.body.classList.remove("no-scroll");
+
+    });
+
+});
+
+
+/* IMAGE FALLBACK */
+
+document.querySelectorAll("img").forEach(function(image){
+
+    image.addEventListener("error", function(){
+
+        this.style.display = "none";
+
+    });
+
+});
+
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+const revealElements = document.querySelectorAll(
+    ".intro-grid, .feature-head, .feature-main, .events-heading, .event-card, .banquet-inner, .process-title, .process-card, .final .container"
+);
+
+revealElements.forEach(function(element){
+
+    element.classList.add("reveal-ready");
+
+});
+
+
+const revealObserver = new IntersectionObserver(
+
+    function(entries){
+
+        entries.forEach(function(entry){
+
+            if(entry.isIntersecting){
+
+                entry.target.classList.add("revealed");
+
+                revealObserver.unobserve(entry.target);
+
+            }
+
+        });
+
+    },
+
+    {
+        threshold:0.12,
+        rootMargin:"0px 0px -50px 0px"
+    }
+
+);
+
+
+revealElements.forEach(function(element){
+
+    revealObserver.observe(element);
+
+});
+
+
+/* =========================
+   SUBTLE MOUSE PARALLAX
+========================= */
+
+const hero = document.querySelector(".hero");
+const heroImage = document.querySelector(".hero-photo img");
+
+if(hero && heroImage){
+
+    hero.addEventListener("mousemove", function(e){
+
+        if(window.innerWidth <= 850) return;
+
+        const rect = hero.getBoundingClientRect();
+
+        const x = (e.clientX - rect.left) / rect.width - .5;
+        const y = (e.clientY - rect.top) / rect.height - .5;
+
+        heroImage.style.transform =
+            `scale(1.03) translate3d(${x * 10}px, ${y * 7}px, 0)`;
+
+    });
+
+    hero.addEventListener("mouseleave", function(){
+
+        heroImage.style.transform = "";
+
+    });
+
+}
+
+
+/* =========================
+   TOUCH FEEDBACK
+========================= */
+
+document.querySelectorAll(".button, .event-card, .process-card, .cart").forEach(function(element){
+
+    element.addEventListener("touchstart", function(){
+
+        this.style.transform = "scale(.98)";
+
+    }, {passive:true});
+
+    element.addEventListener("touchend", function(){
+
+        this.style.transform = "";
+
+    }, {passive:true});
+
+});
+
+
+/* =========================
+   ESCAPE CLOSE MOBILE MENU
+========================= */
+
+document.addEventListener("keydown", function(e){
+
+    if(e.key === "Escape"){
+
+        mobileMenu.classList.remove("open");
+        document.body.classList.remove("no-scroll");
+
+    }
+
+});
+
+</script>
+
+
+<script>
+(function(){
+  if(document.querySelector('.tn-progress')) return;
+  const progress=document.createElement('div');progress.className='tn-progress';document.body.appendChild(progress);
+  const grain=document.createElement('div');grain.className='tn-grain';document.body.appendChild(grain);
+  const sections=[...document.querySelectorAll('main section, body > section, section')];
+  document.body.classList.add('reveal-ready');
+  sections.forEach((el,i)=>{if(!el.classList.contains('hero')&&!el.classList.contains('menu-hero')&&!el.classList.contains('story-hero')){el.setAttribute('data-reveal','');}});
+  const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');observer.unobserve(e.target);}}),{threshold:.12,rootMargin:'0px 0px -4% 0px'});
+  document.querySelectorAll('[data-reveal]').forEach(el=>observer.observe(el));
+  function update(){const max=document.documentElement.scrollHeight-innerHeight;progress.style.width=(max>0?scrollY/max*100:0)+'%';const h=document.querySelector('.header');if(h){h.style.background=scrollY>40?'rgba(5,8,6,.88)':'rgba(5,8,6,.64)';h.style.borderBottomColor=scrollY>40?'rgba(255,255,255,.16)':'rgba(255,255,255,.11)';}}
+  window.addEventListener('scroll',update,{passive:true});window.addEventListener('resize',update);update();
+  document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',()=>{const mobile=document.querySelector('.mobile-menu');if(mobile){mobile.classList.remove('open');document.body.style.overflow='';}}));
+})();
+</script>
+  
+
+<?php wp_footer(); ?>
+</body>
+</html>
