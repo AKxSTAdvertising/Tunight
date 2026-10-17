@@ -1370,7 +1370,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
     <div class="menu-hero-bg">
 
-        <img
+        <img onerror="this.style.display='none'"
             src="assets/images/menu-hero.jpg"
             alt="TUNIGHT food">
 
@@ -1509,7 +1509,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
             <div class="food-card-image">
 
-                <img
+                <img onerror="this.style.display='none'"
                     src="assets/images/menu/paneer-tikka-1.jpg"
                     alt="Paneer Tikka">
 
@@ -1564,7 +1564,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
             <div class="food-card-image">
 
-                <img
+                <img onerror="this.style.display='none'"
                     src="assets/images/menu/tandoori-mushroom-1.jpg"
                     alt="Tandoori Mushroom">
 
@@ -1619,7 +1619,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
             <div class="food-card-image">
 
-                <img
+                <img onerror="this.style.display='none'"
                     src="assets/images/menu/malai-chaap-1.jpg"
                     alt="Malai Chaap">
 
@@ -1671,7 +1671,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
     <div class="menu-feature-image">
 
-        <img
+        <img onerror="this.style.display='none'"
             src="assets/images/menu-feature.jpg"
             alt="TUNIGHT signature food">
 
@@ -1736,7 +1736,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
             <div class="food-card-image">
 
-                <img
+                <img onerror="this.style.display='none'"
                     src="assets/images/menu/tandoori-platter-1.jpg"
                     alt="Tandoori Veg Platter">
 
@@ -1789,7 +1789,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
             <div class="food-card-image">
 
-                <img
+                <img onerror="this.style.display='none'"
                     src="assets/images/menu/paneer-achari-1.jpg"
                     alt="Paneer Tikka Achari">
 
@@ -1842,7 +1842,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
             <div class="food-card-image">
 
-                <img
+                <img onerror="this.style.display='none'"
                     src="assets/images/menu/tandoori-chaap-1.jpg"
                     alt="Tandoori Chaap">
 
@@ -1918,7 +1918,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
             <div class="food-card-image">
 
-                <img
+                <img onerror="this.style.display='none'"
                     src="assets/images/menu/paneer-butter-masala-1.jpg"
                     alt="Paneer Butter Masala">
 
@@ -1971,7 +1971,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
             <div class="food-card-image">
 
-                <img
+                <img onerror="this.style.display='none'"
                     src="assets/images/menu/dal-makhani-1.jpg"
                     alt="Dal Makhani">
 
@@ -2024,7 +2024,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
             <div class="food-card-image">
 
-                <img
+                <img onerror="this.style.display='none'"
                     src="assets/images/menu/shahi-paneer-1.jpg"
                     alt="Shahi Paneer">
 
@@ -2099,7 +2099,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
             <div class="food-card-image">
 
-                <img
+                <img onerror="this.style.display='none'"
                     src="assets/images/menu/hakka-noodles-1.jpg"
                     alt="Veg Hakka Noodles">
 
@@ -2152,7 +2152,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
             <div class="food-card-image">
 
-                <img
+                <img onerror="this.style.display='none'"
                     src="assets/images/menu/chilli-paneer-1.jpg"
                     alt="Chilli Paneer">
 
@@ -2205,7 +2205,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
             <div class="food-card-image">
 
-                <img
+                <img onerror="this.style.display='none'"
                     src="assets/images/menu/manchurian-1.jpg"
                     alt="Veg Manchurian">
 
@@ -2280,7 +2280,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
             <div class="food-card-image">
 
-                <img
+                <img onerror="this.style.display='none'"
                     src="assets/images/menu/veg-pizza-1.jpg"
                     alt="Veg Pizza">
 
@@ -2333,7 +2333,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
             <div class="food-card-image">
 
-                <img
+                <img onerror="this.style.display='none'"
                     src="assets/images/menu/white-pasta-1.jpg"
                     alt="White Sauce Pasta">
 
@@ -2408,7 +2408,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
             <div class="food-card-image">
 
-                <img
+                <img onerror="this.style.display='none'"
                     src="assets/images/menu/butter-naan-1.jpg"
                     alt="Butter Naan">
 
@@ -2461,7 +2461,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
             <div class="food-card-image">
 
-                <img
+                <img onerror="this.style.display='none'"
                     src="assets/images/menu/garlic-naan-1.jpg"
                     alt="Garlic Naan">
 
@@ -2536,7 +2536,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
             <div class="food-card-image">
 
-                <img
+                <img onerror="this.style.display='none'"
                     src="assets/images/menu/gulab-jamun-1.jpg"
                     alt="Gulab Jamun">
 
@@ -2589,7 +2589,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
             <div class="food-card-image">
 
-                <img
+                <img onerror="this.style.display='none'"
                     src="assets/images/menu/brownie-1.jpg"
                     alt="Brownie With Ice Cream">
 
@@ -2664,7 +2664,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
             <div class="food-card-image">
 
-                <img
+                <img onerror="this.style.display='none'"
                     src="assets/images/menu/lime-soda-1.jpg"
                     alt="Fresh Lime Soda">
 
@@ -2717,7 +2717,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
             <div class="food-card-image">
 
-                <img
+                <img onerror="this.style.display='none'"
                     src="assets/images/menu/virgin-mojito-1.jpg"
                     alt="Virgin Mojito">
 
@@ -2783,7 +2783,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
         <div class="modal-gallery">
 
-            <img
+            <img onerror="this.style.display='none'"
                 id="modalMainImage"
                 class="modal-main-image"
                 src=""
