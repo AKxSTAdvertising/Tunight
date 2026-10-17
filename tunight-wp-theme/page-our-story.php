@@ -1289,7 +1289,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
     <div class="story-hero-image">
 
-        <img
+        <img onerror="this.style.display='none'"
             src="assets/images/our-story-hero.jpg"
             alt="TUNIGHT Terrace Restro and Banquet">
 
@@ -1396,7 +1396,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
         <div class="story-image">
 
-            <img
+            <img onerror="this.style.display='none'"
                 src="assets/images/our-story-main.jpg"
                 alt="TUNIGHT dining experience">
 
@@ -1611,7 +1611,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
         <div class="story-experience-image">
 
-            <img
+            <img onerror="this.style.display='none'"
                 src="assets/images/rooftop.jpg"
                 alt="TUNIGHT rooftop experience">
 
@@ -1657,7 +1657,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
     <div class="story-banquet-image">
 
-        <img
+        <img onerror="this.style.display='none'"
             src="assets/images/banquet-main.jpg"
             alt="TUNIGHT banquet and celebrations">
 
