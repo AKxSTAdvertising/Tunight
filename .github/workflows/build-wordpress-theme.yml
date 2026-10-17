@@ -18,6 +18,24 @@ jobs:
       - name: PHP syntax check
         run: |
           find tunight-wp-theme -name '*.php' -print0 | xargs -0 -n1 php -l
+      - name: Audit referenced restaurant images
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import pathlib, re, sys
+          root = pathlib.Path("tunight-wp-theme")
+          source = "\n".join(p.read_text(errors="ignore") for p in root.rglob("*.php"))
+          refs = sorted(set(re.findall(r"assets/images/[A-Za-z0-9_./-]+\\.(?:jpg|jpeg|png|webp|avif)", source, re.I)))
+          missing = [ref for ref in refs if not (root / ref).is_file()]
+          print(f"Found {len(refs)} unique referenced image paths.")
+          if missing:
+              print("WARNING: these referenced image files are missing from the theme ZIP:")
+              for ref in missing:
+                  print(f"  - {ref}")
+              print("Build continues so the theme can still be reviewed; do not launch on production until the correct assets are added.")
+          else:
+              print("All referenced image assets are present.")
+          PY
       - name: Package installable theme
         run: |
           test -f tunight-wp-theme/style.css
