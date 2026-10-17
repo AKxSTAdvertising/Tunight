@@ -1598,7 +1598,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
     <div class="hero-photo photo">
 
-        <img
+        <img onerror="this.style.display='none'"
             src="assets/images/events-hero.jpg"
             alt="TUNIGHT experiences and celebrations">
 
@@ -1721,7 +1721,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
             <div class="feature-image photo">
 
-                <img
+                <img onerror="this.style.display='none'"
                     src="assets/images/rooftop.jpg"
                     alt="TUNIGHT rooftop dining">
 
@@ -1824,7 +1824,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
                 <div class="event-image photo">
 
-                    <img
+                    <img onerror="this.style.display='none'"
                         src="assets/images/event-01.jpg"
                         alt="Birthday celebration at TUNIGHT">
 
@@ -1863,7 +1863,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
                 <div class="event-image photo">
 
-                    <img
+                    <img onerror="this.style.display='none'"
                         src="assets/images/event-02.jpg"
                         alt="Corporate event at TUNIGHT">
 
@@ -1902,7 +1902,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
                 <div class="event-image photo">
 
-                    <img
+                    <img onerror="this.style.display='none'"
                         src="assets/images/event-03.jpg"
                         alt="Family celebration at TUNIGHT">
 
@@ -1941,7 +1941,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
                 <div class="event-image photo">
 
-                    <img
+                    <img onerror="this.style.display='none'"
                         src="assets/images/event-04.jpg"
                         alt="Anniversary celebration at TUNIGHT">
 
@@ -1980,7 +1980,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
                 <div class="event-image photo">
 
-                    <img
+                    <img onerror="this.style.display='none'"
                         src="assets/images/event-05.jpg"
                         alt="Party at TUNIGHT">
 
@@ -2025,7 +2025,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
     <div class="banquet-photo photo">
 
-        <img
+        <img onerror="this.style.display='none'"
             src="assets/images/banquet-main.jpg"
             alt="TUNIGHT banquet hall">
 
