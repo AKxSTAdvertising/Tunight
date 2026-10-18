@@ -4,7 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>TUNIGHT — Terrace Restro & Banquet</title>
+<title>TUNIGHT | Rooftop Dining & Banquets in Raj Nagar, Ghaziabad</title>
+<meta name="description" content="Discover TUNIGHT Terrace Restro & Banquet in Raj Nagar, Ghaziabad — rooftop dining, Indian favourites, celebrations and banquet events. Explore the menu or enquire on WhatsApp.">
+<meta name="theme-color" content="#09271d">
+<meta property="og:type" content="website">
+<meta property="og:title" content="TUNIGHT — Terrace Dining & Celebrations">
+<meta property="og:description" content="Rooftop dining, memorable evenings and celebrations in Raj Nagar, Ghaziabad.">
+<meta name="twitter:card" content="summary_large_image">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1380,18 +1386,42 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 @media(max-width:600px){.container{width:88%}.hero-content{padding-top:90px}.hero h1{font-size:clamp(52px,15vw,82px)}.hero-text{font-size:14px;margin-top:25px}.hero-buttons{flex-wrap:wrap;margin-top:28px}.button{padding:0 18px;min-height:49px}.hero-bottom{bottom:17px}.hero-bottom-inner{font-size:8px}.intro-grid{grid-template-columns:1fr;gap:24px}.vertical{writing-mode:initial;transform:none}.menu-hero,.story-hero{min-height:72svh}.header-button{padding:12px 13px}.logo{font-size:22px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hero-photo img{animation:none!important}.reveal-ready [data-reveal]{opacity:1;transform:none;transition:none}}
 </style>
-  <link rel="stylesheet" href="global.css?v=20261017">
+  
 
-<style id="tunight-no-navigation-menu">
-/* Keep the brand mark, remove the navigation/menu UI on every screen. */
-.header { border-bottom: 0 !important; }
-.header .nav-links,
-.header .nav-right,
-.header .menu-button,
-.mobile-menu { display: none !important; }
-.header .nav { justify-content: flex-start !important; }
+<style id="tunight-homepage-accessibility">
+#food, #gallery, #visit { scroll-margin-top: 100px; }
+.header { transition: background .25s ease, border-color .25s ease; }
+.mobile-menu[aria-hidden="true"] { visibility: hidden; pointer-events: none; }
+.mobile-menu.open { visibility: visible; pointer-events: auto; }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--gold-light); outline-offset: 4px; }
+@media (max-width: 850px) {
+  .header .nav-links, .header .header-button { display: none; }
+  .header .menu-button { display: flex; align-items: center; justify-content: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
 </style>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "TUNIGHT Terrace Restro & Banquet",
+  "telephone": "+91-78400-03009",
+  "servesCuisine": ["Indian", "North Indian", "Chinese", "Pizza"],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "J-1, Opp. Gaur Central Mall, RDC, Block 1, P & T Colony, Raj Nagar",
+    "addressLocality": "Ghaziabad",
+    "addressRegion": "Uttar Pradesh",
+    "postalCode": "201002",
+    "addressCountry": "IN"
+  },
+  "hasMenu": "menu.html"
+}
+</script>
 </head>
 
 <body>
@@ -1428,7 +1458,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
             TU<span>NIGHT</span>
         </a>
 
-        <nav class="nav-links">
+        <nav class="nav-links" aria-label="Main navigation">
 
             <a href="index.html" class="active">Home</a>
 
@@ -1436,25 +1466,23 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
             <a href="events.html">Experiences</a>
 
-            <a href="gallery.html">Gallery</a>
+            <a href="#gallery">Gallery</a>
 
-            <a href="offers.html">Offers</a>
+            <a href="menu.html">Offers</a>
 
-            <a href="contact.html">Contact</a>
+            <a href="#visit">Contact</a>
 
         </nav>
 
         <div class="nav-right">
 
-            <a href="cart.html" class="cart">
-                🛒
-            </a>
+            <a href="menu.html" class="cart" aria-label="Explore the menu"><span aria-hidden="true">↗</span></a>
 
-            <a href="booking.html" class="header-button">
+            <a href="https://wa.me/917840003009?text=Hi%20TUNIGHT%2C%20I%27d%20like%20to%20enquire%20about%20a%20reservation." target="_blank" rel="noopener noreferrer" class="header-button">
                 Reserve
             </a>
 
-            <button class="menu-button" id="menuOpen">
+            <button class="menu-button" id="menuOpen" type="button" aria-label="Open navigation menu" aria-controls="mobileMenu" aria-expanded="false">
                 ☰
             </button>
 
@@ -1467,7 +1495,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
 <!-- MOBILE MENU -->
 
-<div class="mobile-menu" id="mobileMenu">
+<div class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation" aria-hidden="true">
 
     <div class="mobile-menu-top">
 
@@ -1475,7 +1503,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
             TU<span>NIGHT</span>
         </div>
 
-        <button class="mobile-close" id="menuClose">
+        <button class="mobile-close" id="menuClose" type="button" aria-label="Close navigation menu">
             ×
         </button>
 
@@ -1489,26 +1517,26 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
         <a href="events.html">Experiences</a>
 
-        <a href="gallery.html">Gallery</a>
+        <a href="#gallery">Gallery</a>
 
-        <a href="offers.html">Offers</a>
+        <a href="menu.html">Offers</a>
 
-        <a href="contact.html">Contact</a>
+        <a href="#visit">Contact</a>
 
     </nav>
 
 </div>
 
 
-<!-- HERO -->
+<!-- HERO: hosted editorial ambience image; swap for venue-owned photography when available -->
 
 <section class="hero">
 
     <div class="hero-photo photo">
 
         <img
-            src="assets/images/hero.jpg"
-            alt="TUNIGHT Terrace Restro and Banquet">
+            src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=2200&q=88"
+            alt="Warmly lit restaurant dining ambience" fetchpriority="high" decoding="async">
 
     </div>
 
@@ -1644,13 +1672,13 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
     <div class="experience-grid">
 
-        <a href="rooftop.html" class="experience-card">
+        <a href="#experience" class="experience-card">
 
             <div class="photo">
 
                 <img
-                    src="assets/images/rooftop.jpg"
-                    alt="TUNIGHT rooftop">
+                    src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1600&q=85"
+                    alt="Rooftop restaurant ambience" loading="lazy" decoding="async">
 
             </div>
 
@@ -1684,8 +1712,8 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
             <div class="photo">
 
                 <img
-                    src="assets/images/banquet.jpg"
-                    alt="TUNIGHT banquet">
+                    src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1800&q=85"
+                    alt="Banquet and celebration venue inspiration" loading="lazy" decoding="async">
 
             </div>
 
@@ -1720,15 +1748,15 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
 <!-- FOOD -->
 
-<section class="food">
+<section class="food" id="food">
 
     <div class="container food-grid">
 
         <div class="food-image photo">
 
             <img
-                src="assets/images/food-01.jpg"
-                alt="TUNIGHT food">
+                src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=1400&q=85"
+                alt="Freshly prepared food presentation" loading="lazy" decoding="async">
 
         </div>
 
@@ -1848,8 +1876,8 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
     <div class="banquet-photo photo">
 
         <img
-            src="assets/images/banquet-main.jpg"
-            alt="TUNIGHT banquet hall">
+            src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1800&q=85"
+            alt="Banquet celebration setup" loading="lazy" decoding="async">
 
     </div>
 
@@ -1956,13 +1984,13 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
         <div class="occasion-grid">
 
-            <a href="events.html#birthdays" class="occasion">
+            <a href="events.html#experiences" class="occasion">
 
                 <div class="photo">
 
                     <img
-                        src="assets/images/event-01.jpg"
-                        alt="Birthday celebration">
+                        src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=1200&q=85"
+                        alt="Birthday celebration inspiration" loading="lazy" decoding="async">
 
                 </div>
 
@@ -1981,13 +2009,13 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
             </a>
 
 
-            <a href="events.html#corporate" class="occasion">
+            <a href="events.html#experiences" class="occasion">
 
                 <div class="photo">
 
                     <img
-                        src="assets/images/event-02.jpg"
-                        alt="Corporate event">
+                        src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=1200&q=85"
+                        alt="Corporate gathering inspiration" loading="lazy" decoding="async">
 
                 </div>
 
@@ -2006,13 +2034,13 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
             </a>
 
 
-            <a href="events.html#family" class="occasion">
+            <a href="events.html#experiences" class="occasion">
 
                 <div class="photo">
 
                     <img
-                        src="assets/images/event-03.jpg"
-                        alt="Family celebration">
+                        src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=85"
+                        alt="Family celebration inspiration" loading="lazy" decoding="async">
 
                 </div>
 
@@ -2039,7 +2067,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
 <!-- GALLERY -->
 
-<section class="gallery">
+<section class="gallery" id="gallery">
 
     <div class="container">
 
@@ -2068,38 +2096,38 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
         <div class="gallery-grid">
 
-            <a href="gallery.html" class="gallery-item tall photo">
+            <a href="#gallery" class="gallery-item tall photo">
 
                 <img
-                    src="assets/images/gallery-01.jpg"
-                    alt="TUNIGHT gallery">
+                    src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1400&q=85"
+                    alt="Restaurant interior and dining ambience" loading="lazy" decoding="async">
 
             </a>
 
 
-            <a href="gallery.html" class="gallery-item photo">
+            <a href="#gallery" class="gallery-item photo">
 
                 <img
-                    src="assets/images/gallery-02.jpg"
-                    alt="TUNIGHT ambience">
+                    src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1200&q=85"
+                    alt="Warm restaurant ambience" loading="lazy" decoding="async">
 
             </a>
 
 
-            <a href="gallery.html" class="gallery-item photo">
+            <a href="#gallery" class="gallery-item photo">
 
                 <img
-                    src="assets/images/gallery-03.jpg"
-                    alt="TUNIGHT dining">
+                    src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=85"
+                    alt="Restaurant dining presentation" loading="lazy" decoding="async">
 
             </a>
 
 
-            <a href="gallery.html" class="gallery-item wide photo">
+            <a href="#gallery" class="gallery-item wide photo">
 
                 <img
-                    src="assets/images/gallery-04.jpg"
-                    alt="TUNIGHT celebration">
+                    src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1600&q=85"
+                    alt="Celebration and banquet setup" loading="lazy" decoding="async">
 
             </a>
 
@@ -2108,7 +2136,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
         <div class="gallery-more">
 
-            <a href="gallery.html" class="button button-outline">
+            <a href="#gallery" class="button button-outline">
                 View Full Gallery
             </a>
 
@@ -2254,7 +2282,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
                 Explore Menu
             </a>
 
-            <a href="contact.html" class="button button-outline">
+            <a href="#visit" class="button button-outline">
                 Get In Touch
             </a>
 
@@ -2267,7 +2295,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
 <!-- FOOTER -->
 
-<footer class="footer">
+<footer class="footer" id="visit">
 
     <div class="container footer-grid">
 
@@ -2301,7 +2329,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
                     Experiences
                 </a>
 
-                <a href="gallery.html">
+                <a href="#gallery">
                     Gallery
                 </a>
 
@@ -2318,11 +2346,11 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
             <div class="footer-links">
 
-                <a href="offers.html">
+                <a href="menu.html">
                     Offers
                 </a>
 
-                <a href="cart.html">
+                <a href="menu.html">
                     Order Online
                 </a>
 
@@ -2330,7 +2358,7 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
                     Events
                 </a>
 
-                <a href="contact.html">
+                <a href="#visit">
                     Contact
                 </a>
 
@@ -2347,16 +2375,16 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 
             <div class="footer-links">
 
-                <a href="contact.html">
+                <a href="#visit">
                     Raj Nagar, Ghaziabad
                 </a>
 
-                <a href="contact.html">
+                <a href="https://www.google.com/maps/search/?api=1&query=J-1%20Opposite%20Gaur%20Central%20Mall%20RDC%20Raj%20Nagar%20Ghaziabad" target="_blank" rel="noopener noreferrer">
                     Get Directions
                 </a>
 
-                <a href="contact.html">
-                    Contact TUNIGHT
+                <a href="https://wa.me/917840003009" target="_blank" rel="noopener noreferrer">
+                    WhatsApp: 78400 03009
                 </a>
 
             </div>
@@ -2390,17 +2418,31 @@ const mobileMenu = document.getElementById("mobileMenu");
 menuOpen.addEventListener("click", function(){
 
     mobileMenu.classList.add("open");
-
+    mobileMenu.setAttribute("aria-hidden", "false");
+    menuOpen.setAttribute("aria-expanded", "true");
     document.body.style.overflow = "hidden";
+    menuClose.focus();
 
 });
 
 menuClose.addEventListener("click", function(){
 
     mobileMenu.classList.remove("open");
-
+    mobileMenu.setAttribute("aria-hidden", "true");
+    menuOpen.setAttribute("aria-expanded", "false");
     document.body.style.overflow = "";
+    menuOpen.focus();
 
+});
+
+document.addEventListener("keydown", function(event){
+    if (event.key === "Escape" && mobileMenu.classList.contains("open")) {
+        mobileMenu.classList.remove("open");
+        mobileMenu.setAttribute("aria-hidden", "true");
+        menuOpen.setAttribute("aria-expanded", "false");
+        document.body.style.overflow = "";
+        menuOpen.focus();
+    }
 });
 
 document.querySelectorAll(".mobile-links a").forEach(function(link){
@@ -2408,7 +2450,8 @@ document.querySelectorAll(".mobile-links a").forEach(function(link){
     link.addEventListener("click", function(){
 
         mobileMenu.classList.remove("open");
-
+        mobileMenu.setAttribute("aria-hidden", "true");
+        menuOpen.setAttribute("aria-expanded", "false");
         document.body.style.overflow = "";
 
     });
