@@ -1381,6 +1381,17 @@ section:not(.hero):not(.menu-hero):not(.story-hero){overflow:hidden}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hero-photo img{animation:none!important}.reveal-ready [data-reveal]{opacity:1;transform:none;transition:none}}
 </style>
   <link rel="stylesheet" href="global.css?v=20261017">
+
+<style id="tunight-no-navigation-menu">
+/* Keep the brand mark, remove the navigation/menu UI on every screen. */
+.header { border-bottom: 0 !important; }
+.header .nav-links,
+.header .nav-right,
+.header .menu-button,
+.mobile-menu { display: none !important; }
+.header .nav { justify-content: flex-start !important; }
+</style>
+
 </head>
 
 <body>
